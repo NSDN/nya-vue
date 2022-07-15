@@ -2,5 +2,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Noto+Sans+SC&display=swap');
 
 * {
-  font-family: 'Noto Sans SC', 'Fira Code', monospace;
+  font-family: 'Fira Code', 'Noto Sans SC', monospace;
 }
