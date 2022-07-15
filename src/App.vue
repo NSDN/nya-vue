@@ -6,6 +6,7 @@ export default { name: 'App' }
 import { NTag } from 'naive-ui'
 import { ref } from 'vue'
 import Markdown from 'vue3-markdown-it'
+import Editor from '@tinymce/tinymce-vue'
 
 const title = '喵玉殿'
 const source = ref<string>('')
@@ -18,6 +19,10 @@ const source = ref<string>('')
     <div class="article">
       <textarea v-model="source" />
       <Markdown class="markdown" :source="source" />
+    </div>
+
+    <div class="article" style="margin: 2rem">
+      <Editor />
     </div>
   </div>
 </template>
