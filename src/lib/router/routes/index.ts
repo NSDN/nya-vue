@@ -1,5 +1,11 @@
-import Home from '@/views/Home.vue'
+import type { RouteRecordRaw } from 'vue-router'
 
-const routes = [{ path: '/', component: Home }]
+import Home from '@/views/Home.vue'
+import Login from '@/views/Login.vue'
+
+const routes: RouteRecordRaw[] = [
+  { path: '/', component: Home },
+  { path: '/login', component: Login },
+]
 
 export default routes

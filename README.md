@@ -11,6 +11,7 @@
 |TypeScript|编程语言|
 |vue-router|路由|
 |pinia|store|
+|axios|HTML 请求|
 |Naive UI|UI 框架|
 |tiptap|富文本编缉器|
 |markdown-it|Markdown 编缉器|
