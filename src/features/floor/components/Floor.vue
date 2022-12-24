@@ -17,9 +17,7 @@ defineProps<{
 
     <div class="article-container">
       <div class="status">#{{ floorNumber }}</div>
-
-      <div class="article">{{ article }}</div>
-
+      <div class="article" v-html="article" />
       <div class="attachment">attachment</div>
     </div>
   </div>
