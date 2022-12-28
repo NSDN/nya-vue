@@ -1,6 +1,6 @@
 # 喵玉殿新版论坛
 
-开发文档： <https://root.nsdn.club/nya-vue-document/>
+开发文档： <https://root.nsdn.club/nya-develop-document/>
 
 ## 技术栈
 
