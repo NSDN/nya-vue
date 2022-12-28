@@ -1,11 +1,18 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-import Home from '@/views/Home.vue'
-import Login from '@/views/Login.vue'
+import { MAIN_LAYOUT } from '../constant'
 
 const routes: RouteRecordRaw[] = [
-  { path: '/', component: Home },
-  { path: '/login', component: Login },
+  {
+    path: '/',
+    name: 'Home',
+    component: MAIN_LAYOUT,
+    children: [
+      { path: '', component: () => import('@/views/ArticleList.vue') },
+    ],
+  },
+
+  { path: '/login', component: () => import('@/views/Login.vue') },
 ]
 
 export default routes
