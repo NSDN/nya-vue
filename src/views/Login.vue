@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import LoginInput from '@/features/authorization/components/LoginInput.vue'
+import BackButton from '@/components/button/BackButton.vue'
 
 import type { AuthorizationServices } from '@/features/authorization/types'
 
@@ -26,6 +27,8 @@ async function handleSubmit(): Promise<void> {
 
 <template>
   <div id="login">
+    <BackButton class="back-button" />
+
     <div class="login-wrapper">
       <LoginInput title="用户名" type="text" @input="setUserName" />
       <LoginInput title="密码" type="password" @input="setPassword" />
@@ -40,7 +43,14 @@ async function handleSubmit(): Promise<void> {
   display: flex;
   height: 100vh;
   justify-content: center;
+  position: relative;
   width: 100vw;
+}
+
+.back-button {
+  left: 2rem;
+  position: absolute;
+  top: 1rem;
 }
 
 .login-wrapper {

@@ -5,14 +5,23 @@ import { MAIN_LAYOUT } from '../constant'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Top',
     component: MAIN_LAYOUT,
+
     children: [
-      { path: '', component: () => import('@/views/ArticleList.vue') },
+      {
+        path: '',
+        name: 'Home',
+        component: () => import('@/views/ArticleList.vue'),
+      },
     ],
   },
 
-  { path: '/login', component: () => import('@/views/Login.vue') },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/Login.vue'),
+  },
 ]
 
 export default routes
