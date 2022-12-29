@@ -41,10 +41,9 @@ async function handleSubmit(): Promise<void> {
 #login {
   align-items: center;
   display: flex;
-  height: 100vh;
   justify-content: center;
   position: relative;
-  width: 100vw;
+  width: 100%;
 }
 
 .back-button {
@@ -55,9 +54,9 @@ async function handleSubmit(): Promise<void> {
 
 .login-wrapper {
   align-items: center;
-  background: #eee;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
-  box-shadow: 0 0 6px 2px #ccc;
+  box-shadow: 0 1px 8px 0 #888;
   display: flex;
   flex-direction: column;
   gap: 1rem;

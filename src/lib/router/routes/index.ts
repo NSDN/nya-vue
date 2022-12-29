@@ -1,26 +1,32 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-import { MAIN_LAYOUT } from '../constant'
+import { MAIN_LAYOUT, NONE_SIDEBAR_LAYOUT } from '../constant'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'Top',
     component: MAIN_LAYOUT,
 
     children: [
       {
         path: '',
         name: 'Home',
-        component: () => import('@/views/ArticleList.vue'),
+        component: () => import('@/views/computer/ArticleList.vue'),
       },
     ],
   },
 
   {
     path: '/login',
-    name: 'login',
-    component: () => import('@/views/Login.vue'),
+    component: NONE_SIDEBAR_LAYOUT,
+
+    children: [
+      {
+        path: '',
+        name: 'Login',
+        component: () => import('@/views/computer/Login.vue'),
+      },
+    ],
   },
 ]
 
