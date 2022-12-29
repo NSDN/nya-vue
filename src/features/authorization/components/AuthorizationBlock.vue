@@ -5,7 +5,7 @@ import { useAuthorizationStore } from '../hooks'
 const router = useRouter()
 
 function login(): void {
-  router.push({ name: 'login' })
+  router.push({ name: 'Login' })
 }
 </script>
 
