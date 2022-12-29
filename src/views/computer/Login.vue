@@ -2,10 +2,10 @@
 import LoginInput from '@/features/authorization/components/LoginInput.vue'
 import BackButton from '@/components/button/BackButton.vue'
 
-import type { AuthorizationServices } from '@/features/authorization/types'
-
 import { ref } from 'vue'
-import { login } from '@/features/authorization/services'
+import { useAuthorizationStore } from '@/features/authorization/hooks'
+
+const authorization = useAuthorizationStore()
 
 const username = ref<string>('')
 const setUserName = (value: string) => (username.value = value)
@@ -14,14 +14,10 @@ const password = ref<string>('')
 const setPassword = (value: string) => (password.value = value)
 
 async function handleSubmit(): Promise<void> {
-  const userInfo: AuthorizationServices.UserInfo | undefined = await login({
+  await authorization.queryToken({
     username: username.value,
     password: password.value,
   })
-
-  if (userInfo) {
-    console.log(userInfo)
-  }
 }
 </script>
 
@@ -30,8 +26,8 @@ async function handleSubmit(): Promise<void> {
     <BackButton class="back-button" />
 
     <div class="login-wrapper">
-      <LoginInput title="用户名" type="text" @input="setUserName" />
-      <LoginInput title="密码" type="password" @input="setPassword" />
+      <LoginInput title="用户名" type="text" @write="setUserName" />
+      <LoginInput title="密码" type="password" @write="setPassword" />
       <button class="submit-button" @click="handleSubmit">提交</button>
     </div>
   </div>
@@ -47,9 +43,9 @@ async function handleSubmit(): Promise<void> {
 }
 
 .back-button {
-  left: 2rem;
+  left: 0;
   position: absolute;
-  top: 1rem;
+  top: 0;
 }
 
 .login-wrapper {

@@ -10,24 +10,30 @@ defineProps<{
 
 <template>
   <div id="floor">
-    <div class="personal-info">
-      <span class="icon" />
-      <span class="userinfo">{{ username }}</span>
-    </div>
+    <div class="status">#{{ floorNumber }}</div>
 
-    <div class="article-container">
-      <div class="status">#{{ floorNumber }}</div>
-      <div class="article" v-html="article" />
-      <div class="attachment">attachment</div>
+    <div class="wrapper">
+      <div class="personal-info">
+        <span class="icon" />
+        <span class="userinfo">{{ username }}</span>
+      </div>
+
+      <div class="article-container">
+        <div class="article" v-html="article" />
+        <div class="attachment">attachment</div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 #floor {
-  background: #ebebeb;
+  background: var(--common-block-background);
+  border-radius: var(--common-block-radius);
+}
+
+.wrapper {
   display: flex;
-  min-height: 13rem;
 }
 
 .personal-info {
@@ -67,8 +73,6 @@ defineProps<{
 .article {
   box-sizing: border-box;
   flex: 1;
-  padding: 1rem 0;
-  white-space: pre-line;
 }
 
 .attachment {

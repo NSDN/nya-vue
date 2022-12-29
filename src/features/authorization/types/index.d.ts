@@ -1,6 +1,12 @@
 import type { AxiosResponse } from 'axios'
 
 export namespace AuthorizationServices {
+  /** @description 令牌信息 */
+  interface TokenInfo {
+    access_token: string
+    token_type: string
+  }
+
   /** @description 登录信息 */
   interface LoginInfo {
     username: string
@@ -18,5 +24,5 @@ export namespace AuthorizationServices {
   }
 
   /** @description 登录响应 */
-  type LoginResponse = AxiosResponse<UserInfo, LoginInfo>
+  type LoginResponse = AxiosResponse<TokenInfo, LoginInfo>
 }

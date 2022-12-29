@@ -1,19 +1,15 @@
 <script setup lang="ts">
-import AuthorizationBlock from '@/features/authorization/components/AuthorizationBlock.vue'
 import UserInfo from '@/features/authorization/components/UserInfo.vue'
-import { useAuthorizationStore } from '@/features/authorization/hooks'
 import PlateOnSidebar from '@/features/plate/components/PlateOnSidebar.vue'
 
 import { usePlate } from '@/features/plate/hooks'
 
 const { plates } = usePlate()
-const authorization = useAuthorizationStore()
 </script>
 
 <template>
   <div class="sidebar">
-    <UserInfo v-if="authorization.loginOver" />
-    <AuthorizationBlock v-else />
+    <UserInfo />
 
     <div class="plate-group">
       <PlateOnSidebar

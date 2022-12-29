@@ -44,6 +44,7 @@ import Sidebar from './components/Sidebar.vue'
   display: flex;
   flex: 1;
   padding: var(--common-content-padding);
+  overflow: auto;
 }
 
 #main-layout footer {

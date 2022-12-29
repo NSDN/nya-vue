@@ -28,6 +28,19 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
+
+  {
+    path: '/article',
+    component: MAIN_LAYOUT,
+
+    children: [
+      {
+        path: '',
+        name: 'Article',
+        component: () => import('@/views/computer/Article.vue'),
+      },
+    ],
+  },
 ]
 
 export default routes
