@@ -7,17 +7,17 @@ defineProps<{
 }>()
 
 enum EmitTypeEnum {
-  INPUT = 'input',
+  WRITE = 'write',
 }
 
 const emit = defineEmits<{
-  (event: EmitTypeEnum.INPUT, value: string): void
+  (event: EmitTypeEnum.WRITE, value: string): void
 }>()
 
 const value = ref<string>('')
 
 function handleInput(): void {
-  emit(EmitTypeEnum.INPUT, value.value)
+  emit(EmitTypeEnum.WRITE, value.value)
 }
 </script>
 

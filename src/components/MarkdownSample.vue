@@ -3,20 +3,17 @@ export default { name: 'MarkdownSample' }
 </scrpit>
 
 <script setup lang="ts">
-import MarkdownIt from 'markdown-it'
 import { ref, watch } from 'vue'
+import { marked } from 'marked'
 
 const emit = defineEmits<{
   (event: 'submit', value: string): void
 }>()
 
-const markdown = new MarkdownIt()
 const source = ref<string>('')
-const result = ref<string>(markdown.render(source.value))
+const result = ref<string>(marked(source.value))
 
-watch(source, (): void => {
-  result.value = markdown.render(source.value)
-})
+watch<string>(source, (newValue: string) => (result.value = marked(newValue)))
 
 enum DisplayModeEnum {
   WRITE = 'write',
@@ -72,8 +69,7 @@ const displayMode = ref<DisplayModeEnum>(DisplayModeEnum.WRITE)
 
 <style scoped>
 .article {
-  box-sizing: border-box;
-  padding: 1rem;
+  margin: 1rem 0 -1rem;
 }
 
 .button-group {
@@ -92,16 +88,18 @@ const displayMode = ref<DisplayModeEnum>(DisplayModeEnum.WRITE)
 .article .write {
   border: 2px solid #333;
   box-sizing: border-box;
-  height: 15rem;
+  height: 4rem;
   margin: 0.5rem 0 0;
   width: 100%;
 }
 
 .article .review {
+  background: var(--common-block-background);
   border: 2px solid #333;
   box-sizing: border-box;
-  height: 15rem;
+  height: 4rem;
   margin: 0.5rem 0 0;
+  overflow: auto;
   padding: 0 1rem;
   width: 100%;
 }

@@ -14,7 +14,7 @@
 |axios|HTML 请求|
 |Naive UI|UI 框架|
 |tiptap|富文本编缉器|
-|markdown-it|Markdown 编缉器|
+|marked|Markdown 编缉器|
 
 ## 启动项目
 

@@ -40,8 +40,11 @@ import Sidebar from './components/Sidebar.vue'
 
 .middle .content {
   background: rgba(255, 192, 203, 0.8);
+  box-sizing: border-box;
   display: flex;
   flex: 1;
+  padding: var(--common-content-padding);
+  overflow: auto;
 }
 
 #main-layout footer {

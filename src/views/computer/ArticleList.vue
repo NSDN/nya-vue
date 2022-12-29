@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import Announcement from '@/features/plate/components/Announcement.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+function transfer() {
+  router.push({ name: 'Article' })
+}
 </script>
 
 <template>
@@ -9,7 +16,9 @@ import Announcement from '@/features/plate/components/Announcement.vue'
     <div class="search">筛选 / 检索</div>
 
     <div class="article-list">
-      <span class="article-item" v-for="item in 30">这是帖文的示例</span>
+      <button class="article-item" v-for="item in 30" @click="transfer">
+        这是帖文的示例
+      </button>
     </div>
   </div>
 </template>
@@ -19,7 +28,6 @@ import Announcement from '@/features/plate/components/Announcement.vue'
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 2rem 2.5rem;
 }
 
 .search {
@@ -43,7 +51,12 @@ import Announcement from '@/features/plate/components/Announcement.vue'
 }
 
 .article-item {
+  background: none;
+  border: none;
   border-bottom: 2px solid #ccc;
   box-sizing: border-box;
+  cursor: pointer;
+  padding: 0;
+  text-align: start;
 }
 </style>

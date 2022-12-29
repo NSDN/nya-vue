@@ -9,7 +9,16 @@ function handleBack(): void {
 </script>
 
 <template>
-  <a href="javascript:void(0)" class="back-button" @click="handleBack">
-    く 返回
-  </a>
+  <button class="back-button" @click="handleBack">く 返回</button>
 </template>
+
+<style scoped>
+.back-button {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+}
+</style>
