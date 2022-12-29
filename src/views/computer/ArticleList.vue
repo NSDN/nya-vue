@@ -19,7 +19,6 @@ import Announcement from '@/features/plate/components/Announcement.vue'
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 2rem 2.5rem;
 }
 
 .search {

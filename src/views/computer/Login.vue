@@ -54,9 +54,9 @@ async function handleSubmit(): Promise<void> {
 
 .login-wrapper {
   align-items: center;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--common-block-background);
   border-radius: 5px;
-  box-shadow: 0 1px 8px 0 #888;
+  box-shadow: var(--common-block-box-shadow);
   display: flex;
   flex-direction: column;
   gap: 1rem;

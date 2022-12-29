@@ -9,3 +9,9 @@
 body {
   margin: 0;
 }
+
+:root {
+  --common-block-background: rgba(255, 255, 255, 0.8);
+  --common-block-box-shadow: 0 1px 8px 0 #888;
+  --common-content-padding: 2rem 2.5rem;
+}
