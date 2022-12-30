@@ -6,6 +6,5 @@ export namespace Plate {
     title: string
     titleColor?: string
     routeName: string
-    pageType: PageTypeEnum
   }
 }
