@@ -2,9 +2,9 @@
 import UserInfo from '@/features/authorization/components/UserInfo.vue'
 import PlateOnSidebar from '@/features/plate/components/PlateOnSidebar.vue'
 
-import { usePlate } from '@/features/plate/hooks'
+import { usePlateStore } from '@/features/plate/hooks'
 
-const { plates } = usePlate()
+const plate = usePlateStore()
 </script>
 
 <template>
@@ -14,8 +14,9 @@ const { plates } = usePlate()
     <div class="plate-group">
       <PlateOnSidebar
         class="plate-item"
-        v-for="(item, index) of plates"
+        v-for="(item, index) of plate.plates"
         :key="index.toString()"
+        :item="item"
       />
     </div>
   </div>
@@ -36,13 +37,13 @@ const { plates } = usePlate()
   box-sizing: border-box;
   margin: 1rem -1rem 0;
   overflow: auto;
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 1rem;
 }
 
 .plate-item {
-  margin: 1rem 0.5rem 0;
+  margin: 1rem 0 0;
 }
 .plate-item:first-child {
-  margin: 0 0.5rem 0;
+  margin: 0;
 }
 </style>

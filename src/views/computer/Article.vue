@@ -6,6 +6,7 @@ import MarkdownSample from '@/components/MarkdownSample.vue'
 import type { FloorTypes } from '@/features/floor/types'
 
 import { ref } from 'vue'
+import BackButton from '@/components/button/BackButton.vue'
 
 const floors = ref<FloorTypes.FloorInfo[]>([
   {
@@ -51,6 +52,8 @@ function submit(article: string): void {
 
 <template>
   <div id="article">
+    <BackButton class="back" />
+
     <div class="building">
       <Floor
         v-for="item of floors"
@@ -72,6 +75,11 @@ function submit(article: string): void {
 #article {
   display: flex;
   flex-direction: column;
+}
+
+.back {
+  align-self: flex-start;
+  margin: -1rem 0 1rem;
 }
 
 .building {
