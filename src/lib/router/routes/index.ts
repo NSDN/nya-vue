@@ -1,8 +1,11 @@
 import type { RouteRecordRaw } from 'vue-router'
 
 import { MAIN_LAYOUT, NONE_SIDEBAR_LAYOUT } from '../constant'
+import plates from './plates'
 
 const routes: RouteRecordRaw[] = [
+  ...plates,
+
   {
     path: '/',
     component: MAIN_LAYOUT,
@@ -11,7 +14,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: '',
         name: 'Home',
-        component: () => import('@/views/computer/ArticleList.vue'),
+        redirect: '/plate/translate',
       },
     ],
   },

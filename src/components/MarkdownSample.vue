@@ -41,6 +41,12 @@ const displayMode = ref<DisplayModeEnum>(DisplayModeEnum.WRITE)
       >
         review
       </button>
+
+      <div style="flex: 1; text-align: end">
+        <button class="button submit" @click="() => emit('submit', result)">
+          submit
+        </button>
+      </div>
     </div>
 
     <textarea
@@ -51,19 +57,12 @@ const displayMode = ref<DisplayModeEnum>(DisplayModeEnum.WRITE)
 
     <div
       class="review"
+      :class="{
+        'review-fix': displayMode === DisplayModeEnum.REVIEW,
+      }"
       v-show="displayMode === DisplayModeEnum.REVIEW"
       v-html="result"
     />
-
-    <button
-      class="button submit"
-      :class="{
-        'submit-fix': displayMode === DisplayModeEnum.WRITE,
-      }"
-      @click="() => emit('submit', result)"
-    >
-      submit
-    </button>
   </div>
 </template>
 
@@ -74,6 +73,7 @@ const displayMode = ref<DisplayModeEnum>(DisplayModeEnum.WRITE)
 
 .button-group {
   display: flex;
+  gap: 0.5rem;
 }
 
 .button {
@@ -85,7 +85,7 @@ const displayMode = ref<DisplayModeEnum>(DisplayModeEnum.WRITE)
   opacity: 0.6;
 }
 
-.article .write {
+.write {
   border: 2px solid #333;
   box-sizing: border-box;
   height: 4rem;
@@ -93,7 +93,7 @@ const displayMode = ref<DisplayModeEnum>(DisplayModeEnum.WRITE)
   width: 100%;
 }
 
-.article .review {
+.review {
   background: var(--common-block-background);
   border: 2px solid #333;
   box-sizing: border-box;
@@ -104,11 +104,7 @@ const displayMode = ref<DisplayModeEnum>(DisplayModeEnum.WRITE)
   width: 100%;
 }
 
-.submit {
-  margin: 0.5rem 0 0;
-}
-
-.submit-fix {
-  margin: 3px 0 0;
+.review-fix {
+  margin: 0.5rem 0 0.3rem;
 }
 </style>
