@@ -1,12 +1,12 @@
 import type { RouteRecordRaw } from 'vue-router'
 
 import { MAIN_LAYOUT, NONE_SIDEBAR_LAYOUT } from '../constant'
-import commic from './commic'
 import plates from './plates'
+import translate from './translate'
 
 const routes: RouteRecordRaw[] = [
+  ...translate,
   ...plates,
-  ...commic,
 
   {
     path: '/',
@@ -16,7 +16,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: '',
         name: 'Home',
-        redirect: '/plate/translate',
+        redirect: '/translate',
       },
     ],
   },

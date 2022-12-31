@@ -3,20 +3,21 @@ import type { RouteRecordRaw } from 'vue-router'
 import { MAIN_LAYOUT } from '../constant'
 import { RouteNameEnum } from '../enum'
 
-const commic: RouteRecordRaw[] = [
+const translate: RouteRecordRaw[] = [
   {
-    path: '/commic',
+    path: '/translate/root',
     component: MAIN_LAYOUT,
+    redirect: '/translate',
     meta: { plateRouteName: RouteNameEnum.TRANSLATE_PLATE },
 
     children: [
       {
-        path: '',
-        name: 'Commic',
+        path: '/translate/commic',
+        name: 'TranslateCommic',
         component: () => import('@/views/computer/Commic.vue'),
       },
     ],
   },
 ]
 
-export default commic
+export default translate

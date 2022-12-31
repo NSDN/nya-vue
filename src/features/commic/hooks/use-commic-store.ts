@@ -22,7 +22,7 @@ const useCommicStore = defineStore('commic', () => {
    * @param commicID 漫画 ID
    */
   const clickListItem = (commicID: string): void => {
-    router.push({ name: 'Commic', query: { id: commicID } })
+    router.push({ name: 'TranslateCommic', query: { id: commicID } })
   }
 
   /**
