@@ -12,12 +12,33 @@ const username = computed<string>(() =>
 
 function transfer(): void {
   // TODO: 登入后改为跳转到个人信息页
-  router.push({ name: 'Login' })
+  !authorization.loginDone && router.push({ name: 'Login' })
+}
+
+let timer: NodeJS.Timer | null = null
+const clearTimer = () => timer && clearInterval(timer)
+
+function handlePointerDown(): void {
+  if (!authorization.loginDone) {
+    return
+  }
+
+  clearTimer()
+
+  timer = setTimeout((): void => {
+    authorization.logout()
+    clearTimer()
+  }, 2000)
 }
 </script>
 
 <template>
-  <button id="user-info" @click="transfer">
+  <button
+    id="user-info"
+    @click="transfer"
+    @pointerdown="handlePointerDown"
+    @pointerup="clearTimer"
+  >
     <span class="circle">图</span>
     <span class="username">{{ username }}</span>
   </button>
