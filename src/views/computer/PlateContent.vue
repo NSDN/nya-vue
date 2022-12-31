@@ -4,7 +4,7 @@ import ArticleList from '@/features/article/components/ArticleList.vue'
 import PictureList from '@/features/commic/components/PictureList.vue'
 
 import { PageTypeEnum } from '@/features/plate/enum'
-import { computed, onMounted } from 'vue'
+import { computed, onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCommicStore } from '@/features/commic/hooks'
 
@@ -16,7 +16,7 @@ const isArticlePage = computed<boolean>(
 
 const commic = useCommicStore()
 
-onMounted(async (): Promise<void> => {
+onBeforeMount(async (): Promise<void> => {
   // TODO: 请求文章
   isArticlePage.value ? () => {} : await commic.queryList()
 })

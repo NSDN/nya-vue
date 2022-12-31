@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useAuthorizationStore } from '@/features/authorization/hooks'
-import { useRouterStore } from '@/hooks'
+import { useRouter } from 'vue-router'
 
-const router = useRouterStore()
+const router = useRouter()
 const authorization = useAuthorizationStore()
 
 const username = computed<string>(() =>
@@ -12,7 +12,7 @@ const username = computed<string>(() =>
 
 function transfer(): void {
   // TODO: 登入后改为跳转到个人信息页
-  router.transfer({ name: 'Login' })
+  router.push({ name: 'Login' })
 }
 </script>
 

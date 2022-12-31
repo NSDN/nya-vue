@@ -3,10 +3,10 @@ import UserInfo from '@/features/authorization/components/UserInfo.vue'
 import PlateOnSidebar from '@/features/plate/components/PlateOnSidebar.vue'
 
 import { usePlateStore } from '@/features/plate/hooks'
-import { onMounted } from 'vue'
+import { onBeforeMount } from 'vue'
 
 const plate = usePlateStore()
-onMounted(async () => plate.queryPlates())
+onBeforeMount(async () => plate.queryPlates())
 </script>
 
 <template>

@@ -14,7 +14,9 @@ const plates: RouteRecordRaw[] = [
         path: '/plate/translate',
         name: 'TranslatePlate',
         component: () => import('@/views/computer/PlateContent.vue'),
-        meta: { pageType: PageTypeEnum.COMMIC },
+        meta: {
+          pageType: PageTypeEnum.COMMIC,
+        },
       },
 
       {

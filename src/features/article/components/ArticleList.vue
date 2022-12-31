@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useRouterStore } from '@/hooks'
+import { useRouter } from 'vue-router'
 
-const router = useRouterStore()
+const router = useRouter()
 
 function transfer() {
-  router.transfer({ name: 'Article' })
+  router.push({ name: 'Article' })
 }
 </script>
 
