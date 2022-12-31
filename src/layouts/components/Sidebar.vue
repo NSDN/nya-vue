@@ -28,6 +28,7 @@ onMounted(async () => plate.queryPlates())
 .sidebar {
   background: rgba(255, 255, 255, 0.8);
   box-sizing: border-box;
+  box-shadow: 4px 0 5px 0 #888;
   display: flex;
   flex-direction: column;
   padding: 1rem;

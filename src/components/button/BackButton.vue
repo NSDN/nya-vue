@@ -19,6 +19,7 @@ function handleBack(): void {
   color: blue;
   cursor: pointer;
   font-size: 1rem;
+  outline: none;
   padding: 0;
 }
 </style>

@@ -41,7 +41,7 @@ function submitComment(content: string): void {
       :list="commic.pages"
     />
 
-    <CommicComment class="comment" :list="comment.list" />
+    <CommicComment class="comment" tabindex="0" :list="comment.list" />
     <MarkdownSample @submit="submitComment" />
   </div>
 </template>
@@ -63,5 +63,10 @@ function submitComment(content: string): void {
 
 .comment {
   flex: 1;
+  outline: none;
+}
+
+.comment:focus {
+  flex: 6;
 }
 </style>

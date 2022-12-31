@@ -37,6 +37,7 @@ function transfer(): void {
   display: flex;
   font-size: 20px;
   height: 5rem;
+  outline: none;
   padding: 0 1rem 0 2rem;
   text-decoration: none;
 }

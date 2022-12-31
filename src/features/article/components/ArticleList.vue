@@ -34,6 +34,7 @@ function transfer() {
   border-bottom: 2px solid #ccc;
   box-sizing: border-box;
   cursor: pointer;
+  outline: none;
   padding: 0;
   text-align: start;
 }

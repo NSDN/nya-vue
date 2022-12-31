@@ -66,6 +66,7 @@ function clickItem(id: string): void {
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  outline: none;
   padding: 0;
   text-align: start;
 }
