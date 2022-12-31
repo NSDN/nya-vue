@@ -1,12 +1,8 @@
 import type { Plate } from '../types'
 
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
 
 const usePlateStore = defineStore('plate', () => {
-  const route = useRoute()
-
   const plates: Plate.PlateItem[] = [
     {
       background:
@@ -29,10 +25,7 @@ const usePlateStore = defineStore('plate', () => {
     },
   ]
 
-  const currentPlate = ref<string>((route.name ?? '') as string)
-  const setCurrentPlate = (name: string) => (currentPlate.value = name)
-
-  return { plates, currentPlate, setCurrentPlate }
+  return { plates }
 })
 
 export default usePlateStore
