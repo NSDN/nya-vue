@@ -21,7 +21,7 @@ defineProps<{
   box-shadow: var(--common-block-box-shadow);
   box-sizing: border-box;
   margin: 1rem 0 0;
-  overflow: scroll;
+  overflow: auto;
   padding: 1rem 2rem;
 }
 
