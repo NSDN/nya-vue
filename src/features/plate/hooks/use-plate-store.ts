@@ -1,31 +1,64 @@
 import type { Plate } from '../types'
+import type {
+  RouteLocationNamedRaw,
+  RouteLocationRaw,
+  RouteRecordName,
+} from 'vue-router'
 
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
+import { queryPlateList } from '../services'
+import { useRoute, useRouter } from 'vue-router'
+import { useRouterStore } from '@/hooks'
 
 const usePlateStore = defineStore('plate', () => {
-  const plates: Plate.PlateItem[] = [
-    {
-      background:
-        'https://static-event.benghuai.com/new_mihoyo_homepage/images/download/cg/origin/2020-10-22.jpg',
-      title: '汉化区',
-      titleColor: '#fff',
-      routeName: 'TranslatePlate',
-    },
+  const route = useRoute()
+  const router = useRouter()
+  const routerStore = useRouterStore()
 
-    {
-      background: '',
-      title: 'sample',
-      routeName: 'Sample01',
-    },
+  /** @description 分区版块列表 */
+  const plates = ref<Plate.List>([])
 
-    {
-      background: '',
-      title: 'sample',
-      routeName: 'Sample02',
-    },
-  ]
+  /**
+   * @description 设置分区版块列表
+   * @param list 分区版块列表
+   */
+  const setPlates = (list: Plate.List) => (plates.value = list)
 
-  return { plates }
+  /**
+   * @description 请求分区版块列表
+   */
+  const queryPlates = async (): Promise<void> => {
+    setPlates(await queryPlateList())
+  }
+
+  /** @description 当前所在版块 */
+  const currentPlate = ref<RouteRecordName>(route.name ?? '')
+
+  /** @description 设置当前所在版块 */
+  const setCurrentPlate = (routeName: string | symbol) => {
+    currentPlate.value = routeName
+  }
+
+  /**
+   * @description 跳转版块
+   * @param to 路由
+   */
+  const transfer = (to: RouteLocationRaw) => {
+    router.push(to)
+    const routeName = (to as RouteLocationNamedRaw).name ?? ''
+    setCurrentPlate(routeName)
+    routerStore.setCurrentRouteName(routeName)
+  }
+
+  return {
+    plates,
+    setPlates,
+    queryPlates,
+    currentPlate,
+    setCurrentPlate,
+    transfer,
+  }
 })
 
 export default usePlateStore
