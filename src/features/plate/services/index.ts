@@ -1,0 +1,1 @@
+export { queryPlateList } from './plate'

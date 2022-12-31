@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import type { Plate } from '../types'
 
-import { computed } from '@vue/reactivity'
-import { useRouterStore } from '@/hooks'
+import { computed } from 'vue'
+import { usePlateStore } from '../hooks'
 
 const props = defineProps<{
-  item: Plate.PlateItem
+  item: Plate.Item
 }>()
 
-const router = useRouterStore()
+const plate = usePlateStore()
 const background = computed<string>(() => `url(${props.item.background})`)
 
 const border = computed<string>(() => {
-  return props.item.routeName === router.currentRouteName
+  return props.item.routeName === plate.currentPlate
     ? '0.3rem solid red'
     : 'none'
 })
 
 function transfer(): void {
-  router.transfer({ name: props.item.routeName })
+  plate.transfer({ name: props.item.routeName })
 }
 </script>
 

@@ -26,13 +26,13 @@ const useRouterStore = defineStore('router', () => {
 
   /**
    * @description 跳转画面
-   * @param routeLocation 路由
+   * @param to 路由
    */
   const transfer = (
-    routeLocation: RouteLocationRaw
+    to: RouteLocationRaw
   ): Promise<NavigationFailure | void | undefined> => {
-    setCurrentRouteName((routeLocation as RouteLocationNamedRaw).name ?? '')
-    return router.push(routeLocation)
+    setCurrentRouteName((to as RouteLocationNamedRaw).name ?? '')
+    return router.push(to)
   }
 
   return { currentRouteName, setCurrentRouteName, transfer }
