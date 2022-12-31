@@ -4,8 +4,10 @@ import BackButton from '@/components/button/BackButton.vue'
 
 import { ref } from 'vue'
 import { useAuthorizationStore } from '@/features/authorization/hooks'
+import { useRouter } from 'vue-router'
 
 const authorization = useAuthorizationStore()
+const router = useRouter()
 
 const username = ref<string>('')
 const setUserName = (value: string) => (username.value = value)
@@ -18,6 +20,10 @@ async function handleSubmit(): Promise<void> {
     username: username.value,
     password: password.value,
   })
+
+  if (authorization.loginDone) {
+    router.back()
+  }
 }
 </script>
 

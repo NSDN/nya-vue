@@ -1,11 +1,20 @@
+import type { AuthorizationServices } from '../types'
+
+import { useStorage } from '@/hooks'
+import { StorageKeyEnum } from '@/hooks/use-storage'
 import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 import { login } from '../services'
-import { AuthorizationServices } from '../types'
 
 const useAuthorizationStore = defineStore('authorization', () => {
+  const storage = useStorage()
+
+  const token = storage.loadData<AuthorizationServices.TokenInfo | null>(
+    StorageKeyEnum.TOKEN_INFO
+  )
+
   /** @description 是否已经登入 */
-  const loginDone = ref<boolean>(false)
+  const loginDone = ref<boolean>(token?.access_token ? true : false)
 
   /**
    * @description 设置登入状态
@@ -16,8 +25,8 @@ const useAuthorizationStore = defineStore('authorization', () => {
 
   /** @description 令牌 */
   const tokenInfo = reactive<AuthorizationServices.TokenInfo>({
-    access_token: '',
-    token_type: '',
+    access_token: token?.access_token ?? '',
+    token_type: token?.token_type ?? '',
   })
 
   /**
@@ -39,10 +48,31 @@ const useAuthorizationStore = defineStore('authorization', () => {
     LoginInfo: AuthorizationServices.LoginInfo
   ): Promise<void> => {
     const tokenInfo = await login(LoginInfo)
-    tokenInfo && setTokenInfo(tokenInfo)
+
+    if (tokenInfo) {
+      storage.saveData(StorageKeyEnum.TOKEN_INFO, tokenInfo)
+      setTokenInfo(tokenInfo)
+      setLoginStatus(true)
+    }
   }
 
-  return { loginDone, setLoginStatus, tokenInfo, setTokenInfo, queryToken }
+  /**
+   * @description 登出
+   */
+  const logout = (): void => {
+    sessionStorage.clear()
+    setLoginStatus(false)
+    window.alert('已登出')
+  }
+
+  return {
+    loginDone,
+    setLoginStatus,
+    tokenInfo,
+    setTokenInfo,
+    queryToken,
+    logout,
+  }
 })
 
 export default useAuthorizationStore

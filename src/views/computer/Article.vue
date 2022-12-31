@@ -79,6 +79,7 @@ function submit(article: string): void {
 
 .back {
   align-self: flex-start;
+  margin: -1rem 0 0;
 }
 
 .building {
