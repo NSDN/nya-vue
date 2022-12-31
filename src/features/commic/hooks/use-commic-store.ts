@@ -2,11 +2,11 @@ import type { Commic } from '../types'
 
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { useRouterStore } from '@/hooks'
 import { queryCommicList, queryCommicPages } from '../services'
+import { useRouter } from 'vue-router'
 
 const useCommicStore = defineStore('commic', () => {
-  const router = useRouterStore()
+  const router = useRouter()
 
   /** @description 漫画列表 */
   const list = ref<Commic.List>([])
@@ -22,7 +22,7 @@ const useCommicStore = defineStore('commic', () => {
    * @param commicID 漫画 ID
    */
   const clickListItem = (commicID: string): void => {
-    router.transfer({ name: 'Commic', query: { id: commicID } })
+    router.push({ name: 'TranslateCommic', query: { id: commicID } })
   }
 
   /**

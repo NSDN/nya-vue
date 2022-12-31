@@ -5,27 +5,27 @@ import { MAIN_LAYOUT } from '../constant'
 
 const plates: RouteRecordRaw[] = [
   {
-    path: '/plate',
-    name: 'Plate',
+    path: '/root',
     component: MAIN_LAYOUT,
+    redirect: '/',
 
     children: [
       {
-        path: '/plate/translate',
+        path: '/translate',
         name: 'TranslatePlate',
         component: () => import('@/views/computer/PlateContent.vue'),
         meta: { pageType: PageTypeEnum.COMMIC },
       },
 
       {
-        path: '/plate/sample01',
+        path: '/sample01',
         name: 'Sample01',
         component: () => import('@/views/computer/PlateContent.vue'),
         meta: { pageType: PageTypeEnum.ARTICLE },
       },
 
       {
-        path: '/plate/sample02',
+        path: '/sample02',
         name: 'Sample02',
         component: () => import('@/views/computer/PlateContent.vue'),
         meta: { pageType: PageTypeEnum.ARTICLE },
