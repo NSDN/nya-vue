@@ -18,7 +18,7 @@ const border = computed<string>(() => {
 })
 
 function transfer(): void {
-  router.transfer(props.item.routeName)
+  router.transfer({ name: props.item.routeName })
 }
 </script>
 

@@ -4,7 +4,7 @@ import { useRouterStore } from '@/hooks'
 const router = useRouterStore()
 
 function transfer() {
-  router.transfer('Article')
+  router.transfer({ name: 'Article' })
 }
 </script>
 

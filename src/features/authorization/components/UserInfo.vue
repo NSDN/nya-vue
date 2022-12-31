@@ -12,7 +12,7 @@ const username = computed<string>(() =>
 
 function transfer(): void {
   // TODO: 登入后改为跳转到个人信息页
-  router.transfer('Login')
+  router.transfer({ name: 'Login' })
 }
 </script>
 

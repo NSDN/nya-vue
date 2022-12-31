@@ -79,12 +79,12 @@ function submit(article: string): void {
 
 .back {
   align-self: flex-start;
-  margin: -1rem 0 1rem;
 }
 
 .building {
   display: flex;
   flex-direction: column;
+  margin: 1rem 0 0;
   overflow: auto;
   gap: 1rem;
 }

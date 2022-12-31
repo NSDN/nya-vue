@@ -1,4 +1,9 @@
-import type { RouteRecordName } from 'vue-router'
+import type {
+  NavigationFailure,
+  RouteLocationNamedRaw,
+  RouteLocationRaw,
+  RouteRecordName,
+} from 'vue-router'
 
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -21,11 +26,13 @@ const useRouterStore = defineStore('router', () => {
 
   /**
    * @description 跳转画面
-   * @param routeName 路由名
+   * @param routeLocation 路由
    */
-  const transfer = (routeName: string | symbol): void => {
-    router.push({ name: routeName })
-    setCurrentRouteName(routeName)
+  const transfer = (
+    routeLocation: RouteLocationRaw
+  ): Promise<NavigationFailure | void | undefined> => {
+    setCurrentRouteName((routeLocation as RouteLocationNamedRaw).name ?? '')
+    return router.push(routeLocation)
   }
 
   return { currentRouteName, setCurrentRouteName, transfer }

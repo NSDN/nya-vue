@@ -1,10 +1,12 @@
 import type { RouteRecordRaw } from 'vue-router'
 
 import { MAIN_LAYOUT, NONE_SIDEBAR_LAYOUT } from '../constant'
+import commic from './commic'
 import plates from './plates'
 
 const routes: RouteRecordRaw[] = [
   ...plates,
+  ...commic,
 
   {
     path: '/',
