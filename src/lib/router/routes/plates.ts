@@ -1,11 +1,13 @@
+import type { RouteRecordRaw } from 'vue-router'
+
 import { PageTypeEnum } from '@/features/plate/enum'
-import { RouteRecordRaw } from 'vue-router'
+import { MAIN_LAYOUT } from '../constant'
 
 const plates: RouteRecordRaw[] = [
   {
     path: '/plate',
     name: 'Plate',
-    component: () => import('@/layouts/MainLayout.vue'),
+    component: MAIN_LAYOUT,
 
     children: [
       {

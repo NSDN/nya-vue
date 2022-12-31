@@ -1,3 +1,3 @@
-import usePlateStore from './usePlateStore'
+import usePlateStore from './use-plate-store'
 
 export { usePlateStore }

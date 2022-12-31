@@ -2,26 +2,23 @@
 import type { Plate } from '../types'
 
 import { computed } from '@vue/reactivity'
-import { useRouter } from 'vue-router'
-import { usePlateStore } from '../hooks'
+import { useRouterStore } from '@/hooks'
 
 const props = defineProps<{
   item: Plate.PlateItem
 }>()
 
-const router = useRouter()
-const plate = usePlateStore()
+const router = useRouterStore()
 const background = computed<string>(() => `url(${props.item.background})`)
 
 const border = computed<string>(() => {
-  return props.item.routeName === plate.currentPlate
+  return props.item.routeName === router.currentRouteName
     ? '0.3rem solid red'
     : 'none'
 })
 
 function transfer(): void {
-  router.push({ name: props.item.routeName })
-  plate.setCurrentPlate(props.item.routeName)
+  router.transfer({ name: props.item.routeName })
 }
 </script>
 
@@ -38,7 +35,7 @@ function transfer(): void {
   background-size: cover;
   border: none;
   border-radius: 3px;
-  box-shadow: 0 1px 8px 0 #888;
+  box-shadow: var(--common-block-box-shadow);
   box-sizing: border-box;
   display: flex;
   height: 5rem;

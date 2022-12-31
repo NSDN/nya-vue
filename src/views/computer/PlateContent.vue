@@ -1,26 +1,40 @@
 <script setup lang="ts">
 import Announcement from '@/features/plate/components/Announcement.vue'
-import ArticleList from '@/features/plate/components/ArticleList.vue'
-import CommicList from '@/features/plate/components/CommicList.vue'
-import { PageTypeEnum } from '@/features/plate/enum'
+import ArticleList from '@/features/article/components/ArticleList.vue'
+import PictureList from '@/features/commic/components/PictureList.vue'
 
-import { computed } from 'vue'
+import { PageTypeEnum } from '@/features/plate/enum'
+import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { useCommicStore } from '@/features/commic/hooks'
 
 const route = useRoute()
 
 const isArticlePage = computed<boolean>(
   () => route.meta.pageType === PageTypeEnum.ARTICLE
 )
+
+const commic = useCommicStore()
+
+onMounted(async (): Promise<void> => {
+  // TODO: 请求文章
+  isArticlePage.value ? () => {} : await commic.queryList()
+})
 </script>
 
 <template>
   <div id="plate-content">
     <Announcement />
+
     <div class="search">筛选 / 检索</div>
 
     <ArticleList v-if="isArticlePage" />
-    <CommicList v-else />
+
+    <PictureList
+      v-else
+      :list="commic.list"
+      @click-item="commic.clickListItem"
+    />
   </div>
 </template>
 
