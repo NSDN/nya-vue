@@ -1,23 +1,14 @@
 <script setup lang="ts">
 import BackButton from '@/components/button/BackButton.vue'
 import UploadCommicWrapper from '@/features/create-topic/components/UploadCommicWrapper.vue'
-import { useTopicTitleStore } from '@/features/create-topic/hooks'
-import { computed } from 'vue'
 
-import { useRoute } from 'vue-router'
+import { useUncommitTopicStore } from '@/features/create-topic/hooks'
 
-const route = useRoute()
-const topicTitle = useTopicTitleStore()
-
-const commicTypePlateRouteName: string[] = ['TranslatePlate']
-
-const isCommicTopic = computed<boolean>(() =>
-  commicTypePlateRouteName.includes((route.meta.from as string) ?? '')
-)
+const topic = useUncommitTopicStore()
 
 function inputTopicTitle(event: Event): void {
   const node = event.target as HTMLInputElement
-  topicTitle.setValue(node.value)
+  topic.setTitle(node.value)
 }
 </script>
 
@@ -28,11 +19,11 @@ function inputTopicTitle(event: Event): void {
     <input
       class="topic-title"
       placeholder="标题"
-      :value="topicTitle.value"
+      :value="topic.title"
       @input="inputTopicTitle"
     />
 
-    <UploadCommicWrapper v-if="isCommicTopic" />
+    <UploadCommicWrapper v-if="topic.isCommicType" />
   </div>
 </template>
 

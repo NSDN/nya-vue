@@ -3,10 +3,10 @@ import type { Commic } from '@/features/commic/types'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { createCommicTopic } from '../services'
-import { useTopicTitleStore } from '.'
+import { useUncommitTopicStore } from '.'
 
 const useUploadCommic = defineStore('upload-commic', () => {
-  const topicTitle = useTopicTitleStore()
+  const topic = useUncommitTopicStore()
 
   /** @description 图片列表 */
   const pages = ref<Commic.Pages>([])
@@ -43,7 +43,8 @@ const useUploadCommic = defineStore('upload-commic', () => {
    */
   const commitTopic = async (): Promise<void> => {
     const succeed = await createCommicTopic({
-      topicTitle: topicTitle.value,
+      plateRouteName: topic.plateRouteName,
+      topicTitle: topic.title,
       pages: pages.value,
     })
 

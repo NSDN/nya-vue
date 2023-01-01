@@ -26,6 +26,7 @@ const routes: RouteRecordRaw[] = [
 
         beforeEnter(to, from) {
           to.meta.from = from.name
+          to.meta.plateRouteName = from.meta.plateRouteName ?? from.name
         },
       },
 
