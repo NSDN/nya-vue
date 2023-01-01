@@ -1,4 +1,4 @@
 import useUploadCommic from './use-upload-commic'
-import useTopicTitleStore from './use-topic-title'
+import useUncommitTopicStore from './use-uncommit-topic'
 
-export { useUploadCommic, useTopicTitleStore }
+export { useUploadCommic, useUncommitTopicStore }
