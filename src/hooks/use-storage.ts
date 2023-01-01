@@ -1,5 +1,6 @@
 export enum StorageKeyEnum {
   TOKEN_INFO = 'token_info',
+  COMMIC_TOPIC = 'commic_topic',
 }
 
 export default function useStorage() {

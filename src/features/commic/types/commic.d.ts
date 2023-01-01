@@ -1,8 +1,9 @@
 export namespace Commic {
   interface PictureItem {
     id: string
-    image: string
-    title: string
+    path: string
+    name: string
+    [property: string]: any
   }
 
   type ListItem = PictureItem
