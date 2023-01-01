@@ -8,6 +8,7 @@ const plates: RouteRecordRaw[] = [
     path: '/root',
     component: MAIN_LAYOUT,
     redirect: '/',
+    meta: { displayCreateTopicButton: true },
 
     children: [
       {

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import CreateTopicButton from '@/features/create-topic/components/CreateTopicButton.vue'
 import Sidebar from './components/Sidebar.vue'
 </script>
 
@@ -12,6 +13,7 @@ import Sidebar from './components/Sidebar.vue'
     </div>
 
     <footer>footer</footer>
+    <CreateTopicButton />
   </div>
 </template>
 

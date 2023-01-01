@@ -18,6 +18,22 @@ const routes: RouteRecordRaw[] = [
         name: 'Home',
         redirect: '/translate',
       },
+
+      {
+        path: 'new-topic',
+        name: 'NewTopic',
+        component: () => import('@/views/computer/NewTopic.vue'),
+
+        beforeEnter(to, from) {
+          to.meta.from = from.name
+        },
+      },
+
+      {
+        path: '/article',
+        name: 'Article',
+        component: () => import('@/views/computer/Article.vue'),
+      },
     ],
   },
 
@@ -30,19 +46,6 @@ const routes: RouteRecordRaw[] = [
         path: '',
         name: 'Login',
         component: () => import('@/views/computer/Login.vue'),
-      },
-    ],
-  },
-
-  {
-    path: '/article',
-    component: MAIN_LAYOUT,
-
-    children: [
-      {
-        path: '',
-        name: 'Article',
-        component: () => import('@/views/computer/Article.vue'),
       },
     ],
   },
