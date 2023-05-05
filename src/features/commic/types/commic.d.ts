@@ -1,8 +1,8 @@
 export namespace Commic {
   interface PictureItem {
     id: string
-    path: string
-    name: string
+    thumbnail: string
+    title: string
     [property: string]: any
   }
 

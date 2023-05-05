@@ -1,32 +1,20 @@
 import type { Plate } from '../types'
+import type { AxiosResponse } from 'axios'
 
-export async function queryPlateList() {
+import { API_URL } from '@/config'
+import { HTTPMethods } from '@/enums'
+import { http } from '@/lib/http/axios'
+
+export async function queryPlateList(): Promise<Plate.List | null> {
   try {
-    const plates: Plate.List = [
-      {
-        background:
-          'https://static-event.benghuai.com/new_mihoyo_homepage/images/download/cg/origin/2020-10-22.jpg',
-        title: '汉化区',
-        titleColor: '#fff',
-        routeName: 'TranslatePlate',
-      },
+    const response: AxiosResponse<Plate.List, null> = await http({
+      url: API_URL.GET_PLATE_LIST,
+      method: HTTPMethods.GET,
+    })
 
-      {
-        background: '',
-        title: 'sample',
-        routeName: 'Sample01',
-      },
-
-      {
-        background: '',
-        title: 'sample',
-        routeName: 'Sample02',
-      },
-    ]
-
-    return plates
+    return response.data
   } catch (error) {
     console.error(error)
-    return []
+    return null
   }
 }

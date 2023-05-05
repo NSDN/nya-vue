@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import Sidebar from './components/Sidebar.vue'
-</script>
-
 <template>
   <div id="main-layout">
     <header>header</header>

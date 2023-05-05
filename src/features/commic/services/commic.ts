@@ -11,8 +11,9 @@ export async function queryCommicList(): Promise<Commic.List> {
 
       list.push({
         id: Date.now().toString(),
-        path: 'https://static-event.benghuai.com/new_mihoyo_homepage/images/download/cg/origin/2020-09-24.jpg',
-        name: '测试一下过长的贴子标题测试一下过长的贴子标题',
+        thumbnail:
+          'https://static-event.benghuai.com/new_mihoyo_homepage/images/download/cg/origin/2020-09-24.jpg',
+        title: '测试一下过长的贴子标题测试一下过长的贴子标题',
       })
     }
 
@@ -34,8 +35,9 @@ export async function queryCommicPages(
 
       pages.push({
         id: i.toString(),
-        path: 'https://static-event.benghuai.com/new_mihoyo_homepage/images/download/cg/origin/2020-07-16.jpg',
-        name: `0${i}`.slice(-2),
+        thumbnail:
+          'https://static-event.benghuai.com/new_mihoyo_homepage/images/download/cg/origin/2020-07-16.jpg',
+        title: `0${i}`.slice(-2),
       })
     }
 
