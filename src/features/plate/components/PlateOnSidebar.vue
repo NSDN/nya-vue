@@ -2,7 +2,6 @@
 import type { Plate } from '../types'
 
 import { computed } from 'vue'
-import { usePlateStore } from '../hooks'
 import { useRoute, useRouter } from 'vue-router'
 
 const props = defineProps<{
