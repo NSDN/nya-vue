@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { queryCommicList, queryCommicPages } from '../services'
 import { useRouter } from 'vue-router'
+import { ROUTE_NAME } from '@/constant/router'
 
 const useCommicStore = defineStore('commic', () => {
   const router = useRouter()
@@ -21,8 +22,11 @@ const useCommicStore = defineStore('commic', () => {
    * @description 点击漫画
    * @param commicID 漫画 ID
    */
-  const clickListItem = (commicID: string): void => {
-    router.push({ name: 'TranslateCommic', query: { id: commicID } })
+  const clickListItem = async (commicID: string): Promise<void> => {
+    await router.push({
+      name: ROUTE_NAME.COMMIC,
+      params: { id: commicID },
+    })
   }
 
   /**

@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { ROUTE_NAME } from '@/constant/router'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
 function transfer() {
-  router.push({ name: 'Article' })
+  router.push({ name: ROUTE_NAME.ARTICLE, params: { id: 0 } })
 }
 </script>
 

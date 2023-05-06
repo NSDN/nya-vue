@@ -27,7 +27,7 @@ function transfer(): void {
 
 <template>
   <button class="plate-on-sidebar" @click="transfer">
-    <span class="title">{{ item.title }}</span>
+    <span class="title">{{ item.name }}</span>
   </button>
 </template>
 
@@ -52,7 +52,7 @@ function transfer(): void {
   align-items: center;
   background: transparent;
   border: v-bind('border');
-  color: v-bind('item.titleColor ?? "inherit"');
+  color: v-bind('item.nameColor ?? "inherit"');
   display: flex;
   height: 100%;
   justify-content: center;

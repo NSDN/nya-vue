@@ -2,7 +2,7 @@ import type { Plate } from '../types'
 import type { AxiosResponse } from 'axios'
 
 import { API_URL } from '@/config'
-import { HTTPMethods } from '@/enums'
+import { HTTPMethods } from '@/constant/enums'
 import { http } from '@/lib/http/axios'
 
 export async function queryPlateList(): Promise<Plate.List | null> {
