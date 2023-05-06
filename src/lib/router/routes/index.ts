@@ -1,27 +1,29 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-import { MAIN_LAYOUT, NONE_SIDEBAR_LAYOUT } from '../constant'
+import {
+  MAIN_LAYOUT,
+  NONE_SIDEBAR_LAYOUT,
+  ROUTE_NAME,
+  ROUTE_PATH,
+} from '@/constant/router'
 import plates from './plates'
-import translate from './translate'
+import topic from '@/lib/router/routes/topic'
 
 const routes: RouteRecordRaw[] = [
-  ...translate,
-  ...plates,
-
   {
-    path: '/',
+    path: ROUTE_PATH.HOME,
     component: MAIN_LAYOUT,
 
     children: [
       {
         path: '',
-        name: 'Home',
-        redirect: '/translate',
+        name: ROUTE_NAME.HOME,
+        redirect: ROUTE_PATH.PLATE,
       },
 
       {
-        path: 'new-topic',
-        name: 'NewTopic',
+        path: ROUTE_PATH.NEW_TOPIC,
+        name: ROUTE_NAME.NEW_TOPIC,
         component: () => import('@/views/computer/NewTopic.vue'),
 
         beforeEnter(to, from) {
@@ -30,26 +32,24 @@ const routes: RouteRecordRaw[] = [
         },
       },
 
-      {
-        path: '/article',
-        name: 'Article',
-        component: () => import('@/views/computer/Article.vue'),
-      },
+      ...topic,
     ],
   },
 
   {
-    path: '/login',
+    path: ROUTE_PATH.LOGIN,
     component: NONE_SIDEBAR_LAYOUT,
 
     children: [
       {
         path: '',
-        name: 'Login',
+        name: ROUTE_NAME.LOGIN,
         component: () => import('@/views/computer/Login.vue'),
       },
     ],
   },
+
+  ...plates,
 ]
 
 export default routes

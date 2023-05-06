@@ -3,7 +3,7 @@ import Announcement from '@/features/plate/components/Announcement.vue'
 import ArticleList from '@/features/article/components/ArticleList.vue'
 import PictureList from '@/features/commic/components/PictureList.vue'
 
-import { PageTypeEnum } from '@/features/plate/enum'
+import { PageType } from '@/constant/enums'
 import { computed, onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCommicStore } from '@/features/commic/hooks'
@@ -11,7 +11,7 @@ import { useCommicStore } from '@/features/commic/hooks'
 const route = useRoute()
 
 const isArticlePage = computed<boolean>(
-  () => route.meta.pageType === PageTypeEnum.ARTICLE
+  () => route.meta.pageType === PageType.ARTICLE
 )
 
 const commic = useCommicStore()

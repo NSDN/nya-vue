@@ -38,8 +38,8 @@ function clickItem(id: string): void {
       :key="item.id"
       @click="clickItem(item.id)"
     >
-      <img :src="item.path" :alt="item.name" />
-      <span :class="{ 'page-type-title': isPageType }">{{ item.name }}</span>
+      <img :src="item.thumbnail" :alt="item.title" />
+      <span :class="{ 'page-type-title': isPageType }">{{ item.title }}</span>
     </button>
   </div>
 </template>
