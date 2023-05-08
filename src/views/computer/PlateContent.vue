@@ -3,25 +3,22 @@ import Announcement from '@/features/plate/components/Announcement.vue'
 import ArticleList from '@/features/article/components/ArticleList.vue'
 import PictureList from '@/features/commic/components/PictureList.vue'
 
-import type { Plate } from '@/features/plate/types'
-
 import { PageType } from '@/constant/enums'
 import { computed, onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCommicStore } from '@/features/commic/hooks'
-import { storage, STORAGE_KEYS } from '@/utils'
+import { usePlateStore } from '@/features/plate/hooks'
 
 const route = useRoute()
+const plateStore = usePlateStore()
 
 const isArticlePage = computed<boolean>(() => {
-  const plates = storage.get<Plate.List>(STORAGE_KEYS.PLATES)
-
-  const plate = plates?.find(
+  const plate = plateStore.plates?.find(
     (item) => item.routeName === route.params.routeName
   )
 
   // 如果没有获取到版块列表，默认按文字版块模式渲染画面
-  if (!plates || !plate) {
+  if (!plate) {
     return true
   }
 

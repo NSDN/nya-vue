@@ -13,13 +13,9 @@ const route = useRoute()
 const router = useRouter()
 const background = computed<string>(() => `url(${props.item.background})`)
 
-const border = computed<string>(() => {
-  const routeName = props.item.routeName
-
-  return routeName === route.name || routeName === route.meta.plateRouteName
-    ? '0.3rem solid red'
-    : 'none'
-})
+const border = computed<string>(() =>
+  props.item.routeName === route.params.routeName ? '0.3rem solid red' : 'none'
+)
 
 function transfer(): void {
   router.push({
