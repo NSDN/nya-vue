@@ -1,3 +1,5 @@
+import type { RouteRecordRedirectOption } from 'vue-router'
+
 /** @description 主要布局式样 */
 export const MAIN_LAYOUT = () => import('@/layouts/MainLayout.vue')
 
@@ -17,12 +19,8 @@ export const ROUTE_PATH = {
 
   /** @description 版块 */
   PLATE: '/plate',
-  /** @description 版块 - 喵玉汉化馆 */
-  PLATE_LOCALIZATION: '/plate/localization',
-  /** @description 版块 - 喵玉咏唱馆 */
-  PLATE_MUSIC: '/plate/music',
-  /** @description 版块 - 魔女的茶会 */
-  PLATE_CHAT: '/plate/chat',
+  /** @description 版块 - 具体某一版块 */
+  PLATE_ITEM: '/plate/:routeName',
 
   /** @description 漫画 */
   COMMIC: '/commic/:id',
@@ -40,15 +38,17 @@ export const ROUTE_NAME = {
   /** @description 新建帖文 */
   NEW_TOPIC: 'NewTopic',
 
-  /** @description 版块 - 喵玉汉化馆 */
-  PLATE_LOCALIZATION: 'PlateLocalization',
-  /** @description 版块 - 喵玉咏唱馆 */
-  PLATE_MUSIC: 'PlateMusic',
-  /** @description 版块 - 魔女的茶会 */
-  PLATE_CHAT: 'PlateChat',
+  /** @description 版块 */
+  PLATE_ITEM: 'PlateItem',
 
   /** @description 漫画 */
   COMMIC: 'Commic',
   /** @description 文章 */
   ARTICLE: 'Article',
+}
+
+/** @description 版块根目录重定向 */
+export const PLATE_ROOT_REDIRECT: RouteRecordRedirectOption = {
+  name: ROUTE_NAME.PLATE_ITEM,
+  params: { routeName: 'localization' },
 }
