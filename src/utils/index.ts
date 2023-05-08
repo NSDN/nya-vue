@@ -1,4 +1,5 @@
 export { parseToken } from './token'
+export { storage, STORAGE_KEYS } from './storage'
 
 /**
  * @description 暂停

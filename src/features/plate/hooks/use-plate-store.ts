@@ -3,6 +3,7 @@ import type { Plate } from '../types'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { queryPlateList } from '../services'
+import { storage, STORAGE_KEYS } from '@/utils'
 
 const usePlateStore = defineStore('plate', () => {
   /** @description 分区版块列表 */
@@ -18,7 +19,9 @@ const usePlateStore = defineStore('plate', () => {
    * @description 请求分区版块列表
    */
   const queryPlates = async (): Promise<void> => {
-    setPlates((await queryPlateList()) ?? [])
+    const list: Plate.List = await queryPlateList()
+    setPlates(list)
+    storage.set<Plate.List>(STORAGE_KEYS.PLATES, list)
   }
 
   return {

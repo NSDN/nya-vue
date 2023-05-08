@@ -3,6 +3,7 @@ import type { Plate } from '../types'
 
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { ROUTE_NAME } from '@/constant/router'
 
 const props = defineProps<{
   item: Plate.Item
@@ -21,7 +22,10 @@ const border = computed<string>(() => {
 })
 
 function transfer(): void {
-  router.push({ name: props.item.routeName })
+  router.push({
+    name: ROUTE_NAME.PLATE_ITEM,
+    params: { routeName: props.item.routeName },
+  })
 }
 </script>
 

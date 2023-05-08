@@ -3,16 +3,30 @@ import Announcement from '@/features/plate/components/Announcement.vue'
 import ArticleList from '@/features/article/components/ArticleList.vue'
 import PictureList from '@/features/commic/components/PictureList.vue'
 
+import type { Plate } from '@/features/plate/types'
+
 import { PageType } from '@/constant/enums'
 import { computed, onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCommicStore } from '@/features/commic/hooks'
+import { storage, STORAGE_KEYS } from '@/utils'
 
 const route = useRoute()
 
-const isArticlePage = computed<boolean>(
-  () => route.meta.pageType === PageType.ARTICLE
-)
+const isArticlePage = computed<boolean>(() => {
+  const plates = storage.get<Plate.List>(STORAGE_KEYS.PLATES)
+
+  const plate = plates?.find(
+    (item) => item.routeName === route.params.routeName
+  )
+
+  // 如果没有获取到版块列表，默认按文字版块模式渲染画面
+  if (!plates || !plate) {
+    return true
+  }
+
+  return plate.pageType === PageType.ARTICLE
+})
 
 const commic = useCommicStore()
 

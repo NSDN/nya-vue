@@ -5,7 +5,7 @@ import { API_URL } from '@/config'
 import { HTTPMethods } from '@/constant/enums'
 import { http } from '@/lib/http/axios'
 
-export async function queryPlateList(): Promise<Plate.List | null> {
+export async function queryPlateList(): Promise<Plate.List> {
   try {
     const response: AxiosResponse<Plate.List, null> = await http({
       url: API_URL.GET_PLATE_LIST,
@@ -15,6 +15,6 @@ export async function queryPlateList(): Promise<Plate.List | null> {
     return response.data
   } catch (error) {
     console.error(error)
-    return null
+    return []
   }
 }
