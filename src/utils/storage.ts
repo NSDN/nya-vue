@@ -1,5 +1,7 @@
 export const STORAGE_KEYS = {
+  TOKEN_INFO: 'token_info',
   PLATES: 'plates',
+  COMMIC_TOPIC: 'commic_topic',
 }
 
 export const storage = {

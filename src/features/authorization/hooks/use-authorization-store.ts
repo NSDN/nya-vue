@@ -1,16 +1,13 @@
 import type { AuthorizationServices } from '../types'
 
-import { useStorage } from '@/hooks'
-import { StorageKeyEnum } from '@/hooks/use-storage'
 import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 import { login } from '../services'
+import { storage, STORAGE_KEYS } from '@/utils'
 
 const useAuthorizationStore = defineStore('authorization', () => {
-  const storage = useStorage()
-
-  const token = storage.loadData<AuthorizationServices.TokenInfo | null>(
-    StorageKeyEnum.TOKEN_INFO
+  const token = storage.get<AuthorizationServices.TokenInfo | null>(
+    STORAGE_KEYS.TOKEN_INFO
   )
 
   /** @description 是否已经登入 */
@@ -50,7 +47,7 @@ const useAuthorizationStore = defineStore('authorization', () => {
     const tokenInfo = await login(LoginInfo)
 
     if (tokenInfo) {
-      storage.saveData(StorageKeyEnum.TOKEN_INFO, tokenInfo)
+      storage.set(STORAGE_KEYS.TOKEN_INFO, tokenInfo)
       setTokenInfo(tokenInfo)
       setLoginStatus(true)
     }
@@ -60,7 +57,7 @@ const useAuthorizationStore = defineStore('authorization', () => {
    * @description 登出
    */
   const logout = (): void => {
-    sessionStorage.clear()
+    storage
     setLoginStatus(false)
     window.alert('已登出')
   }

@@ -1,16 +1,13 @@
 import type { CreateTopic } from '../types'
 
-import { useStorage } from '@/hooks'
-import { StorageKeyEnum } from '@/hooks/use-storage'
+import { storage, STORAGE_KEYS } from '@/utils'
 
 export async function createCommicTopic(
   parameter: CreateTopic.CreateTopicParameter
 ): Promise<boolean> {
   try {
-    const storage = useStorage()
-
-    storage.saveData<CreateTopic.CreateTopicParameter>(
-      StorageKeyEnum.COMMIC_TOPIC,
+    storage.set<CreateTopic.CreateTopicParameter>(
+      STORAGE_KEYS.COMMIC_TOPIC,
       parameter
     )
 
