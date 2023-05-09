@@ -1,24 +1,23 @@
 <script setup lang="ts">
-import LoginInput from '@/features/authorization/components/LoginInput.vue'
+import AuthorizationInput from '@/features/authorization/components/AuthorizationInput.vue'
 import BackButton from '@/components/button/BackButton.vue'
 
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import { useLogin } from '@/features/authorization/hooks'
 import { useRouter } from 'vue-router'
 
 const login = useLogin()
 const router = useRouter()
 
-const username = ref<string>('')
-const setUserName = (value: string) => (username.value = value)
-
-const password = ref<string>('')
-const setPassword = (value: string) => (password.value = value)
+const loginInfo = reactive({
+  username: '',
+  password: '',
+})
 
 async function handleSubmit(): Promise<void> {
   await login.queryToken({
-    username: username.value,
-    password: password.value,
+    username: loginInfo.username,
+    password: loginInfo.password,
   })
 
   if (login.loginDone) {
@@ -32,8 +31,17 @@ async function handleSubmit(): Promise<void> {
     <BackButton class="back-button" />
 
     <div class="login-wrapper">
-      <LoginInput title="用户名" type="text" @write="setUserName" />
-      <LoginInput title="密码" type="password" @write="setPassword" />
+      <AuthorizationInput
+        title="用户名"
+        type="text"
+        v-model="loginInfo.username"
+      />
+
+      <AuthorizationInput
+        title="密码"
+        type="password"
+        v-model="loginInfo.password"
+      />
       <button class="submit-button" @click="handleSubmit">提交</button>
     </div>
   </div>
