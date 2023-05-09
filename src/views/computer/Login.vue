@@ -3,10 +3,10 @@ import LoginInput from '@/features/authorization/components/LoginInput.vue'
 import BackButton from '@/components/button/BackButton.vue'
 
 import { ref } from 'vue'
-import { useAuthorizationStore } from '@/features/authorization/hooks'
+import { useLogin } from '@/features/authorization/hooks'
 import { useRouter } from 'vue-router'
 
-const authorization = useAuthorizationStore()
+const login = useLogin()
 const router = useRouter()
 
 const username = ref<string>('')
@@ -16,12 +16,12 @@ const password = ref<string>('')
 const setPassword = (value: string) => (password.value = value)
 
 async function handleSubmit(): Promise<void> {
-  await authorization.queryToken({
+  await login.queryToken({
     username: username.value,
     password: password.value,
   })
 
-  if (authorization.loginDone) {
+  if (login.loginDone) {
     router.back()
   }
 }
