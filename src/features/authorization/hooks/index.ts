@@ -1,3 +1,3 @@
-import useAuthorizationStore from './use-authorization-store'
+import useLogin from './use-login'
 
-export { useAuthorizationStore }
+export { useLogin }

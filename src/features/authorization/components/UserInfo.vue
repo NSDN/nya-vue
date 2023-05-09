@@ -1,32 +1,30 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useAuthorizationStore } from '@/features/authorization/hooks'
+import { useLogin } from '@/features/authorization/hooks'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const authorization = useAuthorizationStore()
+const login = useLogin()
 
-const username = computed<string>(() =>
-  authorization.loginDone ? 'username' : '游客'
-)
+const username = computed<string>(() => (login.loginDone ? 'username' : '游客'))
 
 function transfer(): void {
   // TODO: 登入后改为跳转到个人信息页
-  !authorization.loginDone && router.push({ name: 'Login' })
+  !login.loginDone && router.push({ name: 'Login' })
 }
 
 let timer: NodeJS.Timer | null = null
 const clearTimer = () => timer && clearInterval(timer)
 
 function handlePointerDown(): void {
-  if (!authorization.loginDone) {
+  if (!login.loginDone) {
     return
   }
 
   clearTimer()
 
   timer = setTimeout((): void => {
-    authorization.logout()
+    login.logout()
     clearTimer()
   }, 2000)
 }

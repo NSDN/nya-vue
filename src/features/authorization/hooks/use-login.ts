@@ -5,7 +5,7 @@ import { reactive, ref } from 'vue'
 import { login } from '../services'
 import { storage, STORAGE_KEYS } from '@/utils'
 
-const useAuthorizationStore = defineStore('authorization', () => {
+const useLogin = defineStore('login', () => {
   const token = storage.get<AuthorizationServices.TokenInfo | null>(
     STORAGE_KEYS.TOKEN_INFO
   )
@@ -63,6 +63,7 @@ const useAuthorizationStore = defineStore('authorization', () => {
   }
 
   return {
+    /** @description 是否已经登入 */
     loginDone,
     setLoginStatus,
     tokenInfo,
@@ -72,4 +73,4 @@ const useAuthorizationStore = defineStore('authorization', () => {
   }
 })
 
-export default useAuthorizationStore
+export default useLogin
