@@ -1,5 +1,9 @@
+<script setup lang="ts">
+import { BASE_BACKGROUND } from '@/config'
+</script>
+
 <template>
-  <div id="main-layout">
+  <div id="main-layout" :style="`background-image: url(${BASE_BACKGROUND})`">
     <header>header</header>
 
     <div class="middle">
@@ -12,7 +16,6 @@
 
 <style scoped>
 #main-layout {
-  background: url('https://static-event.benghuai.com/new_mihoyo_homepage/images/download/cg/origin/2020-11-12.jpg');
   background-size: cover;
   display: flex;
   flex-direction: column;
