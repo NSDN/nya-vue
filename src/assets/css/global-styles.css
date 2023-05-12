@@ -8,6 +8,11 @@
   --common-block-radius: 3px;
   --common-content-padding: 2rem 2.5rem;
   --common-font-color: #333;
+
+  /* 版块牌子 */
+  --plate-name-color: #fff;
+  --plate-name-font-size: 18px;
+  --plate-name-text-shadow: 1px 1px 8px #000;
 }
 
 * {

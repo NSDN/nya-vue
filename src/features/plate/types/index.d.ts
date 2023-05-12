@@ -6,8 +6,6 @@ export namespace Plate {
     id: number
     // 版块名
     name: string
-    // 版块名颜色（同 CSS）
-    nameColor?: string
     // 路由名
     routeName: string
     // 背景图片（图床地址）

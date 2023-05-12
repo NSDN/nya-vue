@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import CreateTopicButton from '@/features/create-topic/components/CreateTopicButton.vue'
 import Sidebar from './components/Sidebar.vue'
+
+import { BASE_BACKGROUND, BASE_BACKGROUND_SIZE } from '@/config'
 </script>
 
 <template>
-  <div id="main-layout">
+  <div id="main-layout" :style="`background-image: url(${BASE_BACKGROUND})`">
     <header>header</header>
 
     <div class="middle">
@@ -19,8 +21,7 @@ import Sidebar from './components/Sidebar.vue'
 
 <style scoped>
 #main-layout {
-  background: url('https://static-event.benghuai.com/new_mihoyo_homepage/images/download/cg/origin/2020-11-12.jpg');
-  background-size: cover;
+  background-size: v-bind('BASE_BACKGROUND_SIZE');
   display: flex;
   flex-direction: column;
   min-height: 100vh;
