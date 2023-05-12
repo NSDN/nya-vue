@@ -52,10 +52,12 @@ function transfer(): void {
   align-items: center;
   background: transparent;
   border: v-bind('border');
-  color: v-bind('item.nameColor ?? "inherit"');
+  color: var(--plate-name-color);
   display: flex;
+  font-size: var(--plate-name-font-size);
   height: 100%;
   justify-content: center;
+  text-shadow: var(--plate-name-text-shadow);
   width: 100%;
 }
 

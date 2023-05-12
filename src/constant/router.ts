@@ -11,8 +11,12 @@ export const NONE_SIDEBAR_LAYOUT = () =>
 export const ROUTE_PATH = {
   /** @description 首页 */
   HOME: '/',
+  /** @description 授权 */
+  AUTHORIZATION: '/authorization',
   /** @description 登入 */
-  LOGIN: '/login',
+  LOGIN: '/authorization/login',
+  /** @description 注册 */
+  REGISTER: '/authorization/register',
 
   /** @description 新建帖文 */
   NEW_TOPIC: 'new-topic',
@@ -34,6 +38,8 @@ export const ROUTE_NAME = {
   HOME: 'Home',
   /** @description 登入 */
   LOGIN: 'Login',
+  /** @description 注册 */
+  REGISTER: 'Register',
 
   /** @description 新建帖文 */
   NEW_TOPIC: 'NewTopic',

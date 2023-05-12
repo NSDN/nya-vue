@@ -37,14 +37,21 @@ const routes: RouteRecordRaw[] = [
   },
 
   {
-    path: ROUTE_PATH.LOGIN,
+    path: ROUTE_PATH.AUTHORIZATION,
     component: NONE_SIDEBAR_LAYOUT,
+    redirect: ROUTE_PATH.LOGIN,
 
     children: [
       {
-        path: '',
+        path: ROUTE_PATH.LOGIN,
         name: ROUTE_NAME.LOGIN,
         component: () => import('@/views/computer/Login.vue'),
+      },
+
+      {
+        path: '/authorization/register',
+        name: 'Register',
+        component: () => import('@/views/computer/Register.vue'),
       },
     ],
   },

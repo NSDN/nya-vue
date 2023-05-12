@@ -11,7 +11,7 @@ export async function queryCommicList(): Promise<Commic.List> {
 
       list.push({
         id: Date.now().toString(),
-        thumbnail: 'https://i.imgur.com/aegKSefl.jpg',
+        thumbnail: 'https://i.imgur.com/piJFoVLl.jpg',
         title: '测试一下过长的贴子标题测试一下过长的贴子标题',
       })
     }
@@ -34,7 +34,7 @@ export async function queryCommicPages(
 
       pages.push({
         id: i.toString(),
-        thumbnail: 'https://i.imgur.com/aegKSefl.jpg',
+        thumbnail: 'https://i.imgur.com/lAJYpN1l.jpg',
         title: `0${i}`.slice(-2),
       })
     }
