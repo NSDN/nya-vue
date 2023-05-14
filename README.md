@@ -15,10 +15,11 @@
 |Naive UI（暂未使用）|UI 框架|
 |tiptap|富文本编缉器|
 |marked|Markdown 编缉器|
+|crypto-js|hash 预处理工具|
 
 ## 启动项目
 
-\* 如果创启动不了，可能是因为 node 版本过低，创建时的 node 版本为 v18
+\* 如果启动不了，可能是因为 node 版本过低，创建时的 node 版本为 v18
 
 ### 安装依赖
 
