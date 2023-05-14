@@ -39,12 +39,12 @@ const useLogin = defineStore('login', () => {
 
   /**
    * @description 请求令牌
-   * @param LoginInfo
+   * @param loginInfo
    */
   const queryToken = async (
-    LoginInfo: AuthorizationServices.LoginInfo
+    loginInfo: AuthorizationServices.LoginInfo
   ): Promise<void> => {
-    const tokenInfo = await login(LoginInfo)
+    const tokenInfo = await login(loginInfo)
 
     if (tokenInfo) {
       storage.set(STORAGE_KEYS.TOKEN_INFO, tokenInfo)

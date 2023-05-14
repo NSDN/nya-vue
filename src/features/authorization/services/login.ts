@@ -1,11 +1,16 @@
 import type { AuthorizationServices } from '../types'
 
 import { http } from '@/lib/http/axios'
+import { HTTPMethods } from '@/constant/enums'
+import { API_URL } from '@/config'
+import { hashSecreate } from '@/utils/authorization'
 
 /**
  * @description 登入 API
- * @param param0
- * @returns
+ * @param loginInfo 登入信息
+ * @param loginInfo.username 用户名
+ * @param loginInfo.password 密码
+ * @returns 返回令牌或 undefined
  */
 export async function login({
   username,
@@ -15,10 +20,9 @@ export async function login({
 > {
   try {
     const resonse: AuthorizationServices.LoginResponse = await http({
-      url: 'login',
-      method: 'POST',
-      data: { username, password },
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      url: API_URL.LOGIN,
+      method: HTTPMethods.POST,
+      data: { username, password: hashSecreate(password) },
     })
 
     return resonse.data
