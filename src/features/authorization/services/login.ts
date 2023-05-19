@@ -3,7 +3,7 @@ import type { AuthorizationServices } from '../types'
 import { http } from '@/lib/http/axios'
 import { HTTPMethods } from '@/constant/enums'
 import { API_URL } from '@/config'
-import { hashSecreate } from '@/utils/authorization'
+import { hashSecreate } from '@/utils'
 
 /**
  * @description 登入 API
@@ -22,7 +22,7 @@ export async function login({
     const resonse: AuthorizationServices.LoginResponse = await http({
       url: API_URL.LOGIN,
       method: HTTPMethods.POST,
-      data: { username, password: hashSecreate(password) },
+      data: { username, password: password && hashSecreate(password) },
     })
 
     return resonse.data

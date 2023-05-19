@@ -1,5 +1,6 @@
 export { parseToken } from './token'
 export { storage, STORAGE_KEYS } from './storage'
+export { hashSecreate } from './authorization'
 
 /**
  * @description 暂停
