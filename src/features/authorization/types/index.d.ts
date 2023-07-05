@@ -9,7 +9,9 @@ export namespace AuthorizationServices {
 
   /** @description 登录信息 */
   interface LoginInfo {
+    /** @description 用户名 */
     username: string
+    /** @description 密码 */
     password: string
   }
 
