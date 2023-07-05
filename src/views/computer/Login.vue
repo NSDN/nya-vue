@@ -2,28 +2,11 @@
 import AuthorizationInput from '@/features/authorization/components/AuthorizationInput.vue'
 import BackButton from '@/components/button/BackButton.vue'
 
-import { reactive } from 'vue'
-import { useLogin } from '@/features/authorization/hooks'
-import { useRouter } from 'vue-router'
+import { useLogin } from '@/features/authorization/compositions'
+import { useLoginStore } from '@/features/authorization/store'
 
+const loginStore = useLoginStore()
 const login = useLogin()
-const router = useRouter()
-
-const loginInfo = reactive({
-  username: '',
-  password: '',
-})
-
-async function handleSubmit(): Promise<void> {
-  await login.queryToken({
-    username: loginInfo.username,
-    password: loginInfo.password,
-  })
-
-  if (login.loginDone) {
-    router.back()
-  }
-}
 </script>
 
 <template>
@@ -34,15 +17,16 @@ async function handleSubmit(): Promise<void> {
       <AuthorizationInput
         title="用户名"
         type="text"
-        v-model="loginInfo.username"
+        v-model="loginStore.loginInfo.username"
       />
 
       <AuthorizationInput
         title="密码"
         type="password"
-        v-model="loginInfo.password"
+        v-model="loginStore.loginInfo.password"
       />
-      <button class="submit-button" @click="handleSubmit">提交</button>
+
+      <button class="submit-button" @click="login.submitLoginInfo">提交</button>
     </div>
   </div>
 </template>

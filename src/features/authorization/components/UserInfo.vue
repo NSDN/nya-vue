@@ -1,32 +1,41 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useLogin } from '@/features/authorization/hooks'
+import { useLoginStore } from '@/features/authorization/store'
 import { useRouter } from 'vue-router'
+import { useLogin } from '../compositions'
+import { LOGOUT_LONG_PRESS_SECONDS, ONE_SECOND } from '@/config'
 
 const router = useRouter()
+const loginStore = useLoginStore()
 const login = useLogin()
 
-const username = computed<string>(() => (login.loginDone ? 'username' : '游客'))
+const username = computed<string>(() =>
+  loginStore.loginDone ? 'username' : '游客'
+)
 
 function transfer(): void {
   // TODO: 登入后改为跳转到个人信息页
-  !login.loginDone && router.push({ name: 'Login' })
+  !loginStore.loginDone && router.push({ name: 'Login' })
 }
 
 let timer: NodeJS.Timer | null = null
 const clearTimer = () => timer && clearInterval(timer)
 
 function handlePointerDown(): void {
-  if (!login.loginDone) {
+  // [[长按登出]]
+  // 未登入时不使长按生效
+  if (!loginStore.loginDone) {
     return
   }
 
+  // 清除可能存在的计时器
   clearTimer()
 
+  // 计时超过 n 秒则登出，不到时间放开则会清除计时器
   timer = setTimeout((): void => {
     login.logout()
     clearTimer()
-  }, 2000)
+  }, LOGOUT_LONG_PRESS_SECONDS * ONE_SECOND)
 }
 </script>
 
