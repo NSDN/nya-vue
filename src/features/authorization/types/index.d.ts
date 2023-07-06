@@ -25,6 +25,6 @@ export namespace AuthorizationServices {
     icon: string
   }
 
-  /** @description 登录响应 */
-  type LoginResponse = AxiosResponse<TokenInfo, LoginInfo>
+  /** @description 请求 jwt 的响应 */
+  type LoginResponse = AxiosResponse<string, LoginInfo>
 }

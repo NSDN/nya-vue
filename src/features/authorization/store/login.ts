@@ -2,64 +2,42 @@ import type { AuthorizationServices } from '../types'
 
 import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
-import { storage, STORAGE_KEYS } from '@/utils'
+import { STORAGE_KEYS, STORE_ID } from '@/constant'
+import { storage } from '@/utils'
 
-const useLoginStore = defineStore('login', () => {
-  const token = storage.get<AuthorizationServices.TokenInfo | null>(
-    STORAGE_KEYS.TOKEN_INFO
-  )
-
+/** @description 登入用信息状态库 */
+const useLoginStore = defineStore(STORE_ID.LOGIN, () => {
   /** @description 登入信息 */
   const loginInfo = reactive<AuthorizationServices.LoginInfo>({
     username: '',
     password: '',
   })
 
+  const token = storage.get<AuthorizationServices.TokenInfo>(
+    STORAGE_KEYS.TOKEN_INFO
+  )
+
   /** @description 是否已经登入 */
-  const loginDone = ref<boolean>(token?.access_token ? true : false)
+  const loggedIn = ref<boolean>(token?.access_token ? true : false)
 
   /**
    * @description 设置已登入与否
    * @param status
    * @returns
    */
-  const setLoginDone = (status: boolean) => (loginDone.value = status)
-
-  /** @description 令牌 */
-  const tokenInfo = reactive<AuthorizationServices.TokenInfo>({
-    access_token: token?.access_token ?? '',
-    token_type: token?.token_type ?? '',
-  })
-
-  /**
-   * @description 设置令牌
-   * @param info 令牌
-   */
-  const setTokenInfo = (info: AuthorizationServices.TokenInfo): void => {
-    for (const key in tokenInfo) {
-      const k = key as keyof AuthorizationServices.TokenInfo
-      tokenInfo[k] = info[k]
-    }
-  }
+  const setLoggedIn = (status: boolean) => (loggedIn.value = status)
 
   return {
     /** @description 登入信息 */
     loginInfo,
     /** @description 是否已经登入 */
-    loginDone,
+    loggedIn,
     /**
      * @description 设置已登入与否
      * @param status
      * @returns
      */
-    setLoginDone,
-    /** @description 令牌 */
-    tokenInfo,
-    /**
-     * @description 设置令牌
-     * @param info 令牌
-     */
-    setTokenInfo,
+    setLoggedIn,
   }
 })
 

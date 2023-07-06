@@ -3,7 +3,8 @@ import type { Plate } from '../types'
 import { defineStore } from 'pinia'
 import { computed } from 'vue'
 import { queryPlateList } from '../services'
-import { storage, STORAGE_KEYS } from '@/utils'
+import { storage } from '@/utils'
+import { STORAGE_KEYS } from '@/constant'
 
 const usePlateStore = defineStore('plate', () => {
   /** @description 分区版块列表 */
