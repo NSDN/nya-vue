@@ -4,7 +4,8 @@ export { API_URL } from './api_url'
 export const BASE_BACKGROUND = 'https://i.imgur.com/hcxO1rIh.jpg'
 /** @description 最底层背景渲染尺寸 */
 export const BASE_BACKGROUND_SIZE = 'cover'
-/** @description 一秒的毫秒数 */
-export const ONE_SECOND = 1000
+
 /** @description 登出时所需长按秒数 */
 export const LOGOUT_LONG_PRESS_SECONDS = 2
+/** @description 登入前简易用户信息所表示的用户名 */
+export const USER_SIMPLE_INFO_NAME_BEFORE_LOGIN = '游客'

@@ -15,9 +15,7 @@ import { hashSecreate } from '@/utils'
 export async function login({
   username,
   password,
-}: AuthorizationServices.LoginInfo): Promise<
-  AuthorizationServices.TokenInfo | undefined
-> {
+}: AuthorizationServices.LoginInfo): Promise<string | undefined> {
   try {
     const resonse: AuthorizationServices.LoginResponse = await http({
       url: API_URL.LOGIN,

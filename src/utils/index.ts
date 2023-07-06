@@ -1,5 +1,5 @@
 export { parseToken } from './token'
-export { storage, STORAGE_KEYS } from './storage'
+export { storage } from './storage'
 export { hashSecreate } from './authorization'
 
 /**

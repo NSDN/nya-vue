@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import UserInfo from '@/features/authorization/components/UserInfo.vue'
+import UserSimpleInfo from '@/features/authorization/components/UserSimpleInfo.vue'
 import PlateOnSidebar from '@/features/plate/components/PlateOnSidebar.vue'
 
 import { usePlateStore } from '@/features/plate/hooks'
@@ -11,7 +11,7 @@ onBeforeMount(async () => plate.queryPlates())
 
 <template>
   <div class="sidebar">
-    <UserInfo />
+    <UserSimpleInfo />
 
     <div class="plate-group">
       <PlateOnSidebar
@@ -46,6 +46,7 @@ onBeforeMount(async () => plate.queryPlates())
 .plate-item {
   margin: 1rem 0 0;
 }
+
 .plate-item:first-child {
   margin: 0;
 }
