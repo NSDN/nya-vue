@@ -1,20 +1,21 @@
 import { useRouter } from 'vue-router'
-import { useJWTStore, useLoginStore } from '../store'
+import { useLoginStore, useUserStore } from '../store'
 import { ROUTE_NAME } from '@/constant/router'
-import { useJWT } from '.'
+import { useJWT, useUser } from '.'
 
 export default function useLogin() {
   const loginStore = useLoginStore()
-  const jwtStore = useJWTStore()
-
+  const userStore = useUserStore()
   const router = useRouter()
   const jwt = useJWT()
+  const user = useUser()
 
   /** @description 登入 */
   const execute = async () => {
     await jwt.queryToken()
+    await user.queryUserInfo()
 
-    if (jwtStore.jwt?.access_token) {
+    if (userStore.userInfo) {
       loginStore.setLoggedIn(true)
       await router.push({ name: ROUTE_NAME.HOME })
     }

@@ -11,16 +11,11 @@ const useJWTStore = defineStore(STORE_ID.JWT, () => {
     storage.get<AuthorizationServices.TokenInfo>(STORAGE_KEYS.TOKEN_INFO)
   )
 
-  const setJWT = (token: string) => {
-    const formattedToken: AuthorizationServices.TokenInfo = {
-      access_token: token,
-      token_type: 'jwt',
-    }
-
-    jwt.value = formattedToken
+  const setJWT = (token: AuthorizationServices.TokenInfo) => {
+    jwt.value = token
 
     // 在浏览器的 storage 中保存 token
-    storage.set(STORAGE_KEYS.TOKEN_INFO, formattedToken)
+    storage.set(STORAGE_KEYS.TOKEN_INFO, token)
   }
 
   return { jwt, setJWT }

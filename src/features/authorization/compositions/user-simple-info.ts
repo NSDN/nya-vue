@@ -6,17 +6,18 @@ import { ONE_SECOND } from '@/constant/enums'
 import { ROUTE_NAME } from '@/constant/router'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useLoginStore } from '../store'
+import { useLoginStore, useUserStore } from '../store'
 import useLogout from './logout'
 
 export default function useUserSimpleInfo() {
   const loginStore = useLoginStore()
+  const userStore = useUserStore()
   const router = useRouter()
   const logout = useLogout()
 
   /** @description 简易个人信息表示名 */
-  const username = computed<string>(() =>
-    loginStore.loggedIn ? 'username' : USER_SIMPLE_INFO_NAME_BEFORE_LOGIN
+  const username = computed<string>(
+    () => userStore.userInfo?.nickname ?? USER_SIMPLE_INFO_NAME_BEFORE_LOGIN
   )
 
   /** @description 点击简易个人信息面板 */

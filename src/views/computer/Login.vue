@@ -26,7 +26,7 @@ const login = useLogin()
         v-model="loginStore.loginInfo.password"
       />
 
-      <button class="submit-button" @click="login.execute">提交</button>
+      <button class="submit-button" @click="login.execute">登入</button>
     </div>
   </div>
 </template>
