@@ -16,10 +16,11 @@ const useUserStore = defineStore(STORE_ID.USER, () => {
   const setUserInfo = (info: AuthorizationServices.UserInfo | null) => {
     userInfo.value = info
 
-    storage.set<AuthorizationServices.UserInfo>(
-      STORAGE_KEYS.USER_INFO,
-      info ?? ({} as AuthorizationServices.UserInfo)
-    )
+    if (info) {
+      storage.set(STORAGE_KEYS.USER_INFO, info)
+    } else {
+      storage.remove(STORAGE_KEYS.USER_INFO)
+    }
   }
 
   return { userInfo, setUserInfo }
