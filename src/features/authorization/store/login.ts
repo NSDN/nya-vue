@@ -13,29 +13,35 @@ const useLoginStore = defineStore(STORE_ID.LOGIN, () => {
     password: '',
   })
 
-  const token = storage.get<AuthorizationServices.TokenInfo>(
-    STORAGE_KEYS.TOKEN_INFO
-  )
+  /** @description 清除登入信息 */
+  const clearLoginInfo = () => {
+    loginInfo.username = ''
+    loginInfo.password = ''
+  }
 
   /** @description 是否已经登入 */
-  const loggedIn = ref<boolean>(token?.access_token ? true : false)
+  const loggedIn = ref<boolean>(
+    storage.get<AuthorizationServices.UserInfo>(STORAGE_KEYS.USER_INFO)?.uid
+      ? true
+      : false
+  )
 
   /**
-   * @description 设置已登入与否
-   * @param status
-   * @returns
+   * @description 设置是否已经登入
+   * @param status 已登入与否
    */
   const setLoggedIn = (status: boolean) => (loggedIn.value = status)
 
   return {
     /** @description 登入信息 */
     loginInfo,
+    /** @description 清除登入信息 */
+    clearLoginInfo,
     /** @description 是否已经登入 */
     loggedIn,
     /**
-     * @description 设置已登入与否
-     * @param status
-     * @returns
+     * @description 设置是否已经登入
+     * @param status 已登入与否
      */
     setLoggedIn,
   }

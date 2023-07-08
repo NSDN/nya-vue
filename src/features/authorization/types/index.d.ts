@@ -3,8 +3,7 @@ import type { AxiosResponse } from 'axios'
 export namespace AuthorizationServices {
   /** @description 令牌信息 */
   interface TokenInfo {
-    access_token: string
-    token_type: string
+    accessToken: string
   }
 
   /** @description 登录信息 */
@@ -26,5 +25,5 @@ export namespace AuthorizationServices {
   }
 
   /** @description 请求 jwt 的响应 */
-  type LoginResponse = AxiosResponse<string, LoginInfo>
+  type LoginResponse = AxiosResponse<TokenInfo, LoginInfo>
 }

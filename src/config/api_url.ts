@@ -1,7 +1,9 @@
 /** @description API URL */
 export const API_URL = {
-  // 版块列表获取 API
+  /** @description 版块列表获取 API */
   GET_PLATE_LIST: '/plates',
-  // 登入 API
+  /** @description 登入 API */
   LOGIN: '/login',
+  /** @description 获取用户信息 */
+  GET_USER_INFO: '/user',
 }

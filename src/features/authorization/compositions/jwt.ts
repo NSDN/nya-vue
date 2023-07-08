@@ -8,7 +8,11 @@ export default function useJWT() {
   /** @description 请求令牌 */
   const queryToken = async (): Promise<void> => {
     const tokenInfo = await login(loginStore.loginInfo)
-    tokenInfo && jwtStore.setJWT(tokenInfo)
+
+    if (tokenInfo) {
+      loginStore.clearLoginInfo()
+      jwtStore.setJWT(tokenInfo)
+    }
   }
 
   return { queryToken }
