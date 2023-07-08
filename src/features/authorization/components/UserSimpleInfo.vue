@@ -12,7 +12,7 @@ const info = reactive(useUserSimpleInfo())
     @pointerdown="info.handleLongTimePush"
     @pointerup="info.handleReleaseKey"
   >
-    <span class="circle">图</span>
+    <img class="icon" :src="info.userIcon" alt="icon" />
     <span class="username">{{ info.username }}</span>
   </button>
 </template>
@@ -26,7 +26,6 @@ const info = reactive(useUserSimpleInfo())
   border-radius: 3px;
   box-shadow: var(--common-block-box-shadow);
   box-sizing: border-box;
-  color: #333;
   cursor: default;
   display: flex;
   font-size: 20px;
@@ -37,13 +36,13 @@ const info = reactive(useUserSimpleInfo())
 }
 
 #user-info:active {
-  background: rgba(238, 238, 238, 0.8);
+  background: var(--common-active-background);
 }
 
-.circle {
+.icon {
   align-items: center;
   border-radius: 50%;
-  border: 2px solid #333;
+  border: var(--simple-info_icon-border);
   display: flex;
   height: 4rem;
   justify-content: center;

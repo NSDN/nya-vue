@@ -1,6 +1,7 @@
 import {
   LOGOUT_LONG_PRESS_SECONDS,
   USER_SIMPLE_INFO_NAME_BEFORE_LOGIN,
+  VISITOR_ICON,
 } from '@/config'
 import { ONE_SECOND } from '@/constant/enums'
 import { ROUTE_NAME } from '@/constant/router'
@@ -18,6 +19,11 @@ export default function useUserSimpleInfo() {
   /** @description 简易个人信息表示名 */
   const username = computed<string>(
     () => userStore.userInfo?.nickname ?? USER_SIMPLE_INFO_NAME_BEFORE_LOGIN
+  )
+
+  /** @description 简易个人信息用户头像 */
+  const userIcon = computed<string>(
+    () => userStore.userInfo?.icon ?? VISITOR_ICON
   )
 
   /** @description 点击简易个人信息面板 */
@@ -55,5 +61,11 @@ export default function useUserSimpleInfo() {
     clearTimer()
   }
 
-  return { username, handleClick, handleLongTimePush, handleReleaseKey }
+  return {
+    username,
+    userIcon,
+    handleClick,
+    handleLongTimePush,
+    handleReleaseKey,
+  }
 }
