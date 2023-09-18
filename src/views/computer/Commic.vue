@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BackButton from '@/components/button/BackButton.vue'
+import BackButton from '@/components/BackButton.vue'
 import PictureList from '@/features/commic/components/PictureList.vue'
 import CommicComment from '@/features/commic/components/CommicComment.vue'
 import MarkdownSample from '@/components/MarkdownSample.vue'

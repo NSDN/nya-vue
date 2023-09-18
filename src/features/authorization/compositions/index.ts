@@ -1,15 +1,5 @@
-import useJWT from './jwt'
-import useLogin from './login'
-import useLoginValidation from './login-validation'
-import useLogout from './logout'
+export { useLogin } from './login'
 import useUserSimpleInfo from './user-simple-info'
-import useUser from './user'
+export { useRegister } from './register'
 
-export {
-  useLogin,
-  useLoginValidation,
-  useLogout,
-  useJWT,
-  useUserSimpleInfo,
-  useUser,
-}
+export { useUserSimpleInfo }

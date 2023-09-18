@@ -1,33 +1,45 @@
 <script setup lang="ts">
 import AuthorizationInput from '@/features/authorization/components/AuthorizationInput.vue'
-import BackButton from '@/components/button/BackButton.vue'
+import BackButton from '@/components/BackButton.vue'
+import BaseCard from '@/components/BaseCard.vue'
 
 import { useLogin } from '@/features/authorization/compositions'
-import { useLoginStore } from '@/features/authorization/store'
+import { useRouter } from 'vue-router'
+import { ROUTE_NAME } from '@/constant/router'
+import { AuthorizationServices } from '@/features/authorization/types'
 
-const loginStore = useLoginStore()
-const login = useLogin()
+const router = useRouter()
+const { loginInfo, formError, login } = useLogin()
+
+const formList: Record<'title' | 'type' | 'key', string>[] = [
+  { title: '用户名', type: 'text', key: 'username' },
+  { title: '密码', type: 'password', key: 'password' },
+]
+
+function moveToRegister() {
+  router.push({ name: ROUTE_NAME.REGISTER })
+}
 </script>
 
 <template>
   <div id="login">
-    <BackButton class="back-button" />
+    <BackButton />
 
-    <div class="login-wrapper">
+    <BaseCard direction="column" height="20rem" width="30rem">
       <AuthorizationInput
-        title="用户名"
-        type="text"
-        v-model="loginStore.loginInfo.username"
+        v-for="item in formList"
+        :key="item.key"
+        :title="item.title"
+        :type="item.type"
+        v-model="loginInfo[item.key as keyof AuthorizationServices.LoginInfo]"
+        :error="formError[item.key as keyof AuthorizationServices.LoginInfoError]"
       />
 
-      <AuthorizationInput
-        title="密码"
-        type="password"
-        v-model="loginStore.loginInfo.password"
-      />
-
-      <button class="submit-button" @click="login.execute">登入</button>
-    </div>
+      <div class="button-group">
+        <button class="button" @click="login">登入</button>
+        <button class="button" @click="moveToRegister">注册</button>
+      </div>
+    </BaseCard>
   </div>
 </template>
 
@@ -46,20 +58,14 @@ const login = useLogin()
   top: 0;
 }
 
-.login-wrapper {
-  align-items: center;
-  background: var(--common-block-background);
-  border-radius: 5px;
-  box-shadow: var(--common-block-box-shadow);
+.button-group {
+  align-self: center;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  height: 20rem;
-  justify-content: center;
-  width: 30rem;
+  gap: 2rem;
+  margin: 0.5rem 0 0;
 }
 
-.submit-button {
-  align-self: center;
+.button {
+  width: 3.5rem;
 }
 </style>

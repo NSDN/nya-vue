@@ -3,6 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap');
 
 :root {
+  --color-red: red;
+}
+
+:root {
   --common-block-background: rgba(255, 255, 255, 0.8);
   --common-block-box-shadow: 0 1px 8px 0 #888;
   --common-block-radius: 3px;
@@ -18,6 +22,10 @@
   --plate-name-color: #fff;
   --plate-name-font-size: 18px;
   --plate-name-text-shadow: 1px 1px 8px #000;
+}
+
+:root {
+  --error-color: var(--color-red);
 }
 
 * {

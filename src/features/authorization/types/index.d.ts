@@ -7,12 +7,9 @@ export namespace AuthorizationServices {
   }
 
   /** @description 登录信息 */
-  interface LoginInfo {
-    /** @description 用户名 */
-    username: string
-    /** @description 密码 */
-    password: string
-  }
+  type LoginInfo = Record<'username' | 'password', string>
+  /** @description 登录信息错误 */
+  type LoginInfoError = LoginInfo
 
   /** @description 用户信息 */
   interface UserInfo {
@@ -23,6 +20,19 @@ export namespace AuthorizationServices {
     mail: string
     icon: string
   }
+
+  /** @description 注册信息 */
+  interface RegisterInfo {
+    /** @description 用户名 */
+    username: string
+    /** @description 密码 */
+    password: string
+    /** @description 确认密码 */
+    confirmPassword: string
+  }
+
+  /** @description 注册信息错误 */
+  type RegisterInfoError = RegisterInfo
 
   /** @description 请求 jwt 的响应 */
   type LoginResponse = AxiosResponse<TokenInfo, LoginInfo>

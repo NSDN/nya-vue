@@ -1,6 +1,7 @@
 export { parseToken } from './token'
 export { storage } from './storage'
 export { hashSecreate } from './authorization'
+export { getMessage, messages } from './messages'
 
 /**
  * @description 暂停
@@ -37,4 +38,20 @@ export function getFormattedDate(date: Date | string, format: string): string {
     .replace(/HH/g, hours.toString())
     .replace(/MM/g, minutes.toString())
     .replace(/SS/g, seconds.toString())
+}
+
+/**
+ * @description 更新对象的值
+ * @param target 目标对象
+ * @param source 源对象
+ */
+export function updateObjectValue<
+  Target extends Record<string, any>,
+  Source extends Record<string, any>
+>(target: Target, source: Source) {
+  for (const key in target) {
+    if (target.hasOwnProperty(key) && source.hasOwnProperty(key)) {
+      target[key] = source[key as Extract<keyof Record<string, any>, string>]
+    }
+  }
 }

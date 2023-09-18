@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import BaseError from '@/components/BaseError.vue'
+
 import { useVModel } from '@/hooks'
 
 const props = defineProps<{
   title: string
   type: string
   modelValue: string
+  error: string
 }>()
 
 const value = useVModel(props, 'modelValue')
@@ -13,7 +16,11 @@ const value = useVModel(props, 'modelValue')
 <template>
   <form class="login-input">
     <span class="title">{{ title }}：</span>
-    <input :type="type" class="input" v-model="value" autocomplete="on" />
+
+    <div class="input-wrapper">
+      <input :type="type" class="input" v-model="value" autocomplete="on" />
+      <BaseError :error="error" />
+    </div>
   </form>
 </template>
 
@@ -25,10 +32,12 @@ const value = useVModel(props, 'modelValue')
 .title {
   text-align: justify;
   text-align-last: justify;
-  width: 5rem;
+  min-width: 5rem;
 }
 
-.input {
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
   margin: 0 0 0 0.5rem;
 }
 </style>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import UserSimpleInfo from '@/features/authorization/components/UserSimpleInfo.vue'
 import PlateOnSidebar from '@/features/plate/components/PlateOnSidebar.vue'
 
 import { usePlateStore } from '@/features/plate/hooks'
@@ -11,8 +10,6 @@ onBeforeMount(async () => plate.queryPlates())
 
 <template>
   <div class="sidebar">
-    <UserSimpleInfo />
-
     <div class="plate-group">
       <PlateOnSidebar
         class="plate-item"
