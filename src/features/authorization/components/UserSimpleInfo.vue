@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import BaseHint from '@/components/BaseHint.vue'
+
 import { reactive } from 'vue'
 import { useUserSimpleInfo } from '../compositions'
 
@@ -6,50 +8,54 @@ const info = reactive(useUserSimpleInfo())
 </script>
 
 <template>
-  <button
-    id="user-info"
-    @click="info.handleClick"
-    @pointerdown="info.handleLongTimePush"
-    @pointerup="info.handleReleaseKey"
-  >
-    <img class="icon" :src="info.userIcon" alt="icon" />
-    <span class="username">{{ info.username }}</span>
-  </button>
+  <div id="user-simple-info">
+    <button
+      class="login-button"
+      @click="info.handleClick"
+      @pointerdown="info.handleLongTimePush"
+      @pointerup="info.handleReleaseKey"
+    >
+      {{ info.username }}
+    </button>
+
+    <button
+      class="login-button"
+      @click="info.handleClick"
+      @pointerdown="info.handleLongTimePush"
+      @pointerup="info.handleReleaseKey"
+    >
+      <img :src="info.userIcon" alt="长按登出" />
+    </button>
+
+    <BaseHint class="hint" hint="长按登出" />
+  </div>
 </template>
 
 <style scoped>
-#user-info {
+#user-simple-info {
   align-items: center;
-  align-content: flex-start;
-  background: var(--common-block-background);
-  border: none;
-  border-radius: 3px;
-  box-shadow: var(--common-block-box-shadow);
-  box-sizing: border-box;
-  cursor: default;
   display: flex;
-  font-size: 20px;
-  height: 5rem;
-  outline: none;
-  padding: 0 1rem 0 2rem;
-  text-decoration: none;
 }
 
-#user-info:active {
-  background: var(--common-active-background);
+.login-button {
+  all: unset;
+  box-sizing: border-box;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0.3rem 0.7rem;
 }
 
-.icon {
+.login-button img {
   align-items: center;
   border-radius: 50%;
   border: var(--simple-info_icon-border);
   display: flex;
-  height: 4rem;
+  height: 3.5rem;
   justify-content: center;
-  width: 4rem;
+  width: 3.5rem;
 }
 
-.username {
-  margin: 0 0 0 2rem;
+.hint {
+  margin: 0 0 0 0.3rem;
 }
 </style>

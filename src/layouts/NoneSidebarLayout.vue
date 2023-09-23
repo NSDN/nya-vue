@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import Header from './components/Header.vue'
+
 import { BASE_BACKGROUND } from '@/config'
 </script>
 
 <template>
   <div id="main-layout" :style="`background-image: url(${BASE_BACKGROUND})`">
-    <header>header</header>
+    <Header />
 
     <div class="middle">
       <div class="content"><RouterView /></div>
@@ -20,14 +22,6 @@ import { BASE_BACKGROUND } from '@/config'
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-#main-layout header {
-  align-items: center;
-  background: rgba(255, 0, 0, 0.8);
-  display: flex;
-  height: 5rem;
-  justify-content: center;
 }
 
 .middle {

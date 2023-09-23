@@ -2,8 +2,9 @@ import type { AuthorizationServices } from '../types'
 
 import { STORAGE_KEYS, STORE_ID } from '@/constant'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { storage } from '@/utils'
+import { getUserInfo } from '../services'
 
 /** @description 用户 */
 const useUserStore = defineStore(STORE_ID.USER, () => {
@@ -23,7 +24,16 @@ const useUserStore = defineStore(STORE_ID.USER, () => {
     }
   }
 
-  return { userInfo, setUserInfo }
+  /** @description 获取用户信息 */
+  const queryUserInfo = async () => {
+    const userInfo = await getUserInfo()
+    userInfo && setUserInfo(userInfo)
+  }
+
+  /** @description 是否已经登入 */
+  const loggedIn = computed<boolean>(() => !!userInfo.value)
+
+  return { userInfo, setUserInfo, queryUserInfo, loggedIn }
 })
 
 export default useUserStore

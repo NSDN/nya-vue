@@ -7,14 +7,13 @@ import { ONE_SECOND } from '@/constant/enums'
 import { ROUTE_NAME } from '@/constant/router'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useLoginStore, useUserStore } from '../store'
-import useLogout from './logout'
+import { useLogin } from '.'
+import { useUserStore } from '../store'
 
 export default function useUserSimpleInfo() {
-  const loginStore = useLoginStore()
   const userStore = useUserStore()
   const router = useRouter()
-  const logout = useLogout()
+  const { logout } = useLogin()
 
   /** @description 简易个人信息表示名 */
   const username = computed<string>(
@@ -28,7 +27,7 @@ export default function useUserSimpleInfo() {
 
   /** @description 点击简易个人信息面板 */
   const handleClick = async () => {
-    if (!loginStore.loggedIn) {
+    if (!userStore.loggedIn) {
       await router.push({ name: ROUTE_NAME.LOGIN })
     } else {
       // TODO: 登入后改为跳转到个人信息页（等待个人信息页的实装）
@@ -42,7 +41,7 @@ export default function useUserSimpleInfo() {
   /** @description 长按简易个人信息面板以登出 */
   const handleLongTimePush = () => {
     // 未登入时不使长按生效
-    if (!loginStore.loggedIn) {
+    if (!userStore.loggedIn) {
       return
     }
 
@@ -51,7 +50,7 @@ export default function useUserSimpleInfo() {
 
     // 计时超过 n 秒则登出，不到时间放开则会清除计时器
     timer = setTimeout((): void => {
-      logout.execute()
+      logout()
       clearTimer()
     }, LOGOUT_LONG_PRESS_SECONDS * ONE_SECOND)
   }

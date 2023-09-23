@@ -49,8 +49,8 @@ const routes: RouteRecordRaw[] = [
       },
 
       {
-        path: '/authorization/register',
-        name: 'Register',
+        path: ROUTE_PATH.REGISTER,
+        name: ROUTE_NAME.REGISTER,
         component: () => import('@/views/computer/Register.vue'),
       },
     ],

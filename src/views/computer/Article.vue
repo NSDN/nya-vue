@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import Floor from '@/features/floor/components/Floor.vue'
-import Tiptap from '@/components/Tiptap.vue'
 import MarkdownSample from '@/components/MarkdownSample.vue'
 
 import type { FloorTypes } from '@/features/floor/types'
 
 import { ref } from 'vue'
-import BackButton from '@/components/button/BackButton.vue'
+import BackButton from '@/components/BackButton.vue'
 
 const floors = ref<FloorTypes.FloorInfo[]>([
   {
