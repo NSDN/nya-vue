@@ -1,23 +1,23 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
+import { ROUTE_NAME } from '@/constant/router'
 
 const route = useRoute()
-const router = useRouter()
 
 const buttonDisplayed = computed<boolean>(
-  () => route.meta.displayCreateTopicButton as boolean
+  () => route.meta.displayCreateTopicButton as boolean,
 )
-
-function transfer(): void {
-  router.push({ name: 'NewTopic' })
-}
 </script>
 
 <template>
-  <button id="create-topic-button" v-if="buttonDisplayed" @click="transfer">
+  <RouterLink
+    v-if="buttonDisplayed"
+    :to="{ name: ROUTE_NAME.NEW_TOPIC }"
+    id="create-topic-button"
+  >
     <img class="icon" src="@/assets/img/icon/note.svg" alt="note" />
-  </button>
+  </RouterLink>
 </template>
 
 <style scoped>
