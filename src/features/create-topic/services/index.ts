@@ -1,14 +1,15 @@
 import type { CreateTopic } from '../types'
 
-import { storage, STORAGE_KEYS } from '@/utils'
+import { storage } from '@/utils'
+import { STORAGE_KEYS } from '@/constant'
 
 export async function createCommicTopic(
-  parameter: CreateTopic.CreateTopicParameter
+  parameter: CreateTopic.CreateTopicParameter,
 ): Promise<boolean> {
   try {
     storage.set<CreateTopic.CreateTopicParameter>(
       STORAGE_KEYS.COMMIC_TOPIC,
-      parameter
+      parameter,
     )
 
     return true
