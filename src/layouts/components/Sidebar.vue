@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import PlateOnSidebar from '@/features/plate/components/PlateOnSidebar.vue'
 
-import { usePlateStore } from '@/features/plate/hooks'
+import { usePlateStore } from '@/features/plate/store'
 import { onBeforeMount } from 'vue'
 
 const plate = usePlateStore()
