@@ -47,11 +47,23 @@ export function getFormattedDate(date: Date | string, format: string): string {
  */
 export function updateObjectValue<
   Target extends Record<string, any>,
-  Source extends Record<string, any>
+  Source extends Record<string, any>,
 >(target: Target, source: Source) {
   for (const key in target) {
     if (target.hasOwnProperty(key) && source.hasOwnProperty(key)) {
       target[key] = source[key as Extract<keyof Record<string, any>, string>]
     }
   }
+}
+
+/**
+ * 深度比较两个对象是否相等
+ * @param object1 对象一
+ * @param object2 对象二
+ */
+export function compareObject(
+  object1?: object | null,
+  object2?: object | null,
+): boolean {
+  return JSON.stringify(object1 ?? {}) === JSON.stringify(object2 ?? {})
 }

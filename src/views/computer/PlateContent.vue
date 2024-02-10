@@ -7,14 +7,14 @@ import { PageType } from '@/constant/enums'
 import { computed, onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCommicStore } from '@/features/commic/hooks'
-import { usePlateStore } from '@/features/plate/hooks'
+import { usePlateStore } from '@/features/plate/store'
 
 const route = useRoute()
 const plateStore = usePlateStore()
 
 const isArticlePage = computed<boolean>(() => {
   const plate = plateStore.plates?.find(
-    (item) => item.routeName === route.params.routeName
+    (item) => item.routeName === route.params.routeName,
   )
 
   // 如果没有获取到版块列表，默认按文字版块模式渲染画面

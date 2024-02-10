@@ -25,11 +25,6 @@ const routes: RouteRecordRaw[] = [
         path: ROUTE_PATH.NEW_TOPIC,
         name: ROUTE_NAME.NEW_TOPIC,
         component: () => import('@/views/computer/NewTopic.vue'),
-
-        beforeEnter(to, from) {
-          to.meta.from = from.name
-          to.meta.plateRouteName = from.meta.plateRouteName ?? from.name
-        },
       },
 
       ...topic,
