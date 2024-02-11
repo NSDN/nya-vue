@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BackButton from '@/components/BackButton.vue'
 import UploadCommicWrapper from '@/features/create-topic/components/UploadCommicWrapper.vue'
+import ArticleTopicCreater from '@/features/create-topic/components/ArticleTopicCreater.vue'
 
 import { useUncommitTopicStore } from '@/features/create-topic/hooks'
 
@@ -24,6 +25,7 @@ function inputTopicTitle(event: Event): void {
     />
 
     <UploadCommicWrapper v-if="topic.isCommicType" />
+    <ArticleTopicCreater v-else />
   </div>
 </template>
 
