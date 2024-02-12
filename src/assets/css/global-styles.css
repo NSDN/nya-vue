@@ -36,3 +36,12 @@
 body {
   margin: 0;
 }
+
+/* 全局块元素包装 */
+.global-block-wrapper {
+  background: var(--common-block-background);
+  border-radius: var(--common-block-radius);
+  box-shadow: var(--common-block-box-shadow);
+  box-sizing: border-box;
+  padding: 0.4rem 0.5rem;
+}

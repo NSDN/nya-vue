@@ -1,13 +1,42 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { md } from '@/lib/markdown'
+import { computed, ref } from 'vue'
+
+/** 切换书写/预览模式用标志 */
+const showReview = ref<boolean>(false)
+/** 切换书写/预览模式 */
+const switchReview = () => (showReview.value = !showReview.value)
+
+/** 预览按钮文字 */
+const reviewButtonText = computed<string>(() =>
+  showReview.value ? '书写' : '预览',
+)
+
+/** 书写内容 */
+const sourceText = ref('')
+
+/** 预览内容（markdown） */
+const markdownText = computed<string>(() => md.render(sourceText.value))
+</script>
 
 <template>
   <div class="article-topic-creater">
     <div class="button-group">
-      <button @click="() => {}">预览</button>
+      <button @click="switchReview">{{ reviewButtonText }}</button>
       <button @click="() => {}">提交主题</button>
     </div>
 
-    <textarea class="article" />
+    <textarea
+      v-show="!showReview"
+      v-model="sourceText"
+      class="global-block-wrapper article"
+    />
+
+    <p
+      v-show="showReview"
+      v-html="markdownText"
+      class="global-block-wrapper article"
+    />
   </div>
 </template>
 
@@ -31,7 +60,9 @@
 }
 
 .article {
+  border: unset;
   flex: 1;
   margin: 1rem 0 0;
+  resize: none;
 }
 </style>

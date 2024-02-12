@@ -3,17 +3,17 @@ export default { name: 'MarkdownSample' }
 </scrpit>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { marked } from 'marked'
+import { computed, ref } from 'vue'
+import MarkdownIt from 'markdown-it'
 
 const emit = defineEmits<{
   (event: 'submit', value: string): void
 }>()
 
-const source = ref<string>('')
-const result = ref<string>(marked(source.value))
+const md = MarkdownIt()
 
-watch<string>(source, (newValue: string) => (result.value = marked(newValue)))
+const source = ref<string>('')
+const result = computed<string>(() => md.render(source.value))
 
 enum DisplayModeEnum {
   WRITE = 'write',
