@@ -19,7 +19,7 @@ const value = useVModel(props, 'modelValue')
 
     <div class="input-wrapper">
       <input :type="type" class="input" v-model="value" autocomplete="on" />
-      <BaseError :error="error" />
+      <BaseError class="error" :error="error" />
     </div>
   </form>
 </template>
@@ -39,5 +39,11 @@ const value = useVModel(props, 'modelValue')
   display: flex;
   flex-direction: column;
   margin: 0 0 0 0.5rem;
+  position: relative;
+}
+
+.error {
+  position: absolute;
+  top: 1.6rem;
 }
 </style>

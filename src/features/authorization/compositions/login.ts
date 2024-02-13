@@ -24,17 +24,22 @@ export function useLogin() {
 
   /** @description 登入 */
   const login = async () => {
+    // 表单验证
     const error = validateLoginForm(loginInfo)
     updateObjectValue(formError, error)
     const hasError = Object.values(formError).some((value) => !!value)
 
+    // 表单验证失败则不执行登入
     if (hasError) {
       return
     }
 
+    // 请求到的 token 会存入 storage
     await jwtStore.queryToken(loginInfo)
+    // API 调用时会通过 axios 请求拦截器将 jwt 写入表头以在后端进行验证
     await userStore.queryUserInfo()
 
+    // 登入成功则跳转到首页
     if (userStore.loggedIn) {
       await router.push({ name: ROUTE_NAME.HOME })
     }
@@ -52,7 +57,7 @@ export function useLogin() {
 
 /** @description 验证登录表单 */
 function validateLoginForm(
-  info: AuthorizationServices.LoginInfo
+  info: AuthorizationServices.LoginInfo,
 ): AuthorizationServices.LoginInfoError {
   const error: AuthorizationServices.LoginInfoError = {
     username: '',

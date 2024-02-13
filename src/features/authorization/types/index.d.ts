@@ -36,4 +36,7 @@ export namespace AuthorizationServices {
 
   /** @description 请求 jwt 的响应 */
   type LoginResponse = AxiosResponse<TokenInfo, LoginInfo>
+
+  /** @description 注册用户的响应 */
+  type RegisterResponse = AxiosResponse<boolean, RegisterInfo>
 }
