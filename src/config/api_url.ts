@@ -4,6 +4,8 @@ export const API_URL = {
   GET_PLATE_LIST: '/plates',
   /** @description 登入 API */
   LOGIN: '/login',
+  /** @description 注册 API */
+  REGISTER: '/register',
   /** @description 获取用户信息 */
   GET_USER_INFO: '/user',
 }

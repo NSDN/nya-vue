@@ -25,14 +25,16 @@ function moveToRegister() {
   <div id="login">
     <BackButton />
 
-    <BaseCard direction="column" height="20rem" width="30rem">
+    <BaseCard class="card" direction="column" height="20rem" width="30rem">
       <AuthorizationInput
         v-for="item in formList"
         :key="item.key"
         :title="item.title"
         :type="item.type"
         v-model="loginInfo[item.key as keyof AuthorizationServices.LoginInfo]"
-        :error="formError[item.key as keyof AuthorizationServices.LoginInfoError]"
+        :error="
+          formError[item.key as keyof AuthorizationServices.LoginInfoError]
+        "
       />
 
       <div class="button-group">
@@ -56,6 +58,10 @@ function moveToRegister() {
   left: 0;
   position: absolute;
   top: 0;
+}
+
+.card {
+  gap: 2.5rem;
 }
 
 .button-group {

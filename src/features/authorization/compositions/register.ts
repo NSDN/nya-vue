@@ -2,9 +2,14 @@ import type { AuthorizationServices } from '../types'
 
 import { reactive } from 'vue'
 import { updateObjectValue } from '@/utils'
+import { register } from '../services'
+import { useRouter } from 'vue-router'
+import { ROUTE_NAME } from '@/constant/router'
 
 /** @description 注册功能 */
 export function useRegister() {
+  const router = useRouter()
+
   /** @description 注册信息 */
   const info = reactive<AuthorizationServices.RegisterInfo>({
     username: '',
@@ -20,11 +25,23 @@ export function useRegister() {
   })
 
   /** @description 确认注册 */
-  const confirmRegister = () => {
+  const confirmRegister = async () => {
+    // 表单验证
     const e = validateRegisterInfo(info)
     updateObjectValue(formError, e)
+    const hasError = Object.values(formError).some((value) => !!value)
 
-    // TODO: 完成注册 API 的调用
+    // 如表单验证失败则不执行注册
+    if (hasError) {
+      return
+    }
+
+    const succeed = await register(info)
+
+    // 成功注册则跳转至登入画面
+    if (succeed) {
+      await router.push({ name: ROUTE_NAME.LOGIN })
+    }
   }
 
   return {
@@ -36,7 +53,7 @@ export function useRegister() {
 
 /** @description 验证注册信息 */
 function validateRegisterInfo(
-  info: AuthorizationServices.RegisterInfo
+  info: AuthorizationServices.RegisterInfo,
 ): AuthorizationServices.RegisterInfoError {
   const error: AuthorizationServices.RegisterInfoError = {
     username: '',

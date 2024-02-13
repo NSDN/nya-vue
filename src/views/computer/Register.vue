@@ -27,7 +27,9 @@ const infoList: Record<'title' | 'type' | 'key', string>[] = [
         :title="i.title"
         :type="i.type"
         v-model="info[i.key as keyof AuthorizationServices.RegisterInfo]"
-        :error="formError[i.key as keyof AuthorizationServices.RegisterInfoError]"
+        :error="
+          formError[i.key as keyof AuthorizationServices.RegisterInfoError]
+        "
       />
 
       <div class="button-group">
@@ -53,7 +55,7 @@ const infoList: Record<'title' | 'type' | 'key', string>[] = [
 }
 
 .card {
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .button {
