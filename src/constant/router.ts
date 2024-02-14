@@ -17,6 +17,8 @@ export const ROUTE_PATH = {
   LOGIN: '/authorization/login',
   /** @description 注册 */
   REGISTER: '/authorization/register',
+  /** @description 404 */
+  NOT_FOUND: '/:pathMatch(.*)*',
 
   /** @description 新建帖文 */
   NEW_TOPIC: 'new-topic',
@@ -40,6 +42,8 @@ export const ROUTE_NAME = {
   LOGIN: 'Login',
   /** @description 注册 */
   REGISTER: 'Register',
+  /** @description 404 */
+  NOT_FOUND: 'NotFound',
 
   /** @description 新建帖文 */
   NEW_TOPIC: 'NewTopic',

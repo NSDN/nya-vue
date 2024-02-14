@@ -13,4 +13,7 @@ export const STORE_ID = {
   JWT: 'jwt',
   USER: 'user',
   CURRENT_PLATE: 'currentPlate',
+  MODAL: 'modal',
 }
+
+export { EMIT_EVENTS } from './emit-events'

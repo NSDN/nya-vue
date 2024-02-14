@@ -48,6 +48,12 @@ const routes: RouteRecordRaw[] = [
         name: ROUTE_NAME.REGISTER,
         component: () => import('@/views/computer/Register.vue'),
       },
+
+      {
+        path: ROUTE_PATH.NOT_FOUND,
+        name: ROUTE_NAME.NOT_FOUND,
+        component: () => import('@/views/computer/NotFound.vue'),
+      },
     ],
   },
 
